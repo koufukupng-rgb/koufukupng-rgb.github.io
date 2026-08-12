@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pedro.jar | Modpacks & Mods para Minecraft</title>
+  
+  <!-- Fonte Inter e Fira Code via Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* VARIÁVEIS DE CORES & CONFIGURAÇÕES GERAIS */
+    :root {
+      --bg-dark: #0f1319;
+      --bg-card: #181f2a;
+      --bg-card-hover: #1e2736;
+      --accent-blue: #0070f3;
+      --accent-blue-hover: #005bb5;
+      --accent-glow: rgba(0, 112, 243, 0.3);
+      --text-main: #f0f4f8;
+      --text-muted: #94a3b8;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      /* Animação suave de entrada da página */
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CABEÇALHO / NAVBAR */
+    header {
+      background-color: rgba(24, 31, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* LOGO: pedro.jar */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-name {
+      font-family: var(--font-main);
+    }
+
+    .logo-ext {
+      font-family: var(--font-code);
+      font-size: 1.1rem;
+      color: var(--accent-blue);
+      background-color: rgba(0, 112, 243, 0.12);
+      border: 1px solid rgba(0, 112, 243, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 2px;
+      box-shadow: 0 0 10px rgba(0, 112, 243, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover .logo-ext {
+      background-color: var(--accent-blue);
+      color: #ffffff;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .nav-status {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    /* CONTEÚDO PRINCIPAL */
+    main {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      flex: 1;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* NAVEGAÇÃO DE MODPACKS (SISTEMA DE ABAS / HEADER DO CARD) */
+    .modpack-container {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .modpack-header {
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .modpack-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modpack-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-hover));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight:bold;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .modpack-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .modpack-badge {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* LISTA DE DOWNLOADS */
+    .download-list {
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    .download-card {
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .download-card:hover {
+      background-color: var(--bg-card-hover);
+      border-color: rgba(0, 112, 243, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .mod-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mod-name {
+      font-family: var(--font-code);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      word-break: break-all;
+    }
+
+    .mod-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* BOTÃO DE DOWNLOAD */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--accent-blue);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+
+    .btn-download:hover {
+      background-color: var(--accent-blue-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .btn-download svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-download:hover svg {
+      transform: translateY(2px);
+    }
+
+    /* RODAPÉ */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background-color: rgba(15, 19, 25, 0.5);
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .modpack-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .download-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGAÇÃO -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-name">pedro</span><span class="logo-ext">.jar</span>
+      </a>
+      <div class="nav-status">
+        <div class="status-dot"></div> Repositório Ativo
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <section class="hero">
+      <h1>Modpacks & Mods para Minecraft</h1>
+      <p>Baixe modpacks otimizados e arquivos .jar diretamente do repositório oficial.</p>
+    </section>
+
+    <!-- SEÇÃO DO MODPACK -->
+    <section class="modpack-container">
+      
+      <!-- CABEÇALHO DO MODPACK -->
+      <div class="modpack-header">
+        <div class="modpack-title-group">
+          <div class="modpack-icon">⚛️</div>
+          <div>
+            <h2 class="modpack-title">Pedro's physics</h2>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Minecraft 1.20.1 • Forge</span>
+          </div>
+        </div>
+        <span class="modpack-badge">8 Mods inclusos</span>
+      </div>
+
+      <!-- LISTA DE MODS -->
+      <div class="download-list">
+        
+        <!-- MOD 1 -->
+        <div class="download-card">
+          <div class="mod-info">
+            <span class="mod-name">valkyrienskies-120-2.4.11.jar</span>
+            <span class="mod-meta">Valkyrien Skies • Physics Engine</span>
+          </div>
+          <a href="https://file.garden/anu7edfYJXGizhvC/mods/valkyrienskies-120-2.4.11.jar" class="btn-download" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download
+          </a>
+        </div>
+
+        <!-- MOD 2 -->
+        <div class="download-card">
+          <div class="mod-info">
+            <span class="mod-name">kotlinforforge-4.12.0-all.jar</span>
+            <span class="mod-meta">Kotlin for Forge • Library</span>
+          </div>
+          <a href="https://file.garden/anu7edfYJXGizhvC/mods/kotlinforforge-4.12.0-all.jar" class="btn-download" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download
+          </a>
+        </div>
+
+        <!-- MOD 3 -->
+        <div class="download-card">
+          <div class="mod-info">
+            <span class="mod-name">create-1.20.1-6.0.8.jar</span>
+            <span class="mod-meta">Create Mod • Automation & Tech</span>
+          </div>
+          <a href="https://file.garden/anu7edfYJXGizhvC/mods/create-1.20.1-6.0.8.jar" class="btn-download" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download
+          </a>
+        </div>
+
+        <!-- MOD 4 -->
+        <div class="download-card">
+          <div class="mod-info">
+            <span class="mod-name">supplementaries-1.20-3.1.43-forge.jar</span>
+            <span class="mod-meta">Supplementaries • Content & Decor</span>
+          </div>
+          <a href="https://file.garden/anu7edfYJXGizhvC/mods/supplementaries-1.20-3.1.43-forge.jar" class="btn-download" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download
+          </a>
+        </div>
+
+        <!-- MOD 5 -->
+        <div class="download-card">
+          <div class="mod-info">
+            <span class="mod-name">clockwork-0.5.6.jar</span>
+            <span class="mod-meta">Clockwork • Create & VS Addon</span>
+          </div>
+          <a href="https://file.garden/anu7edfYJXGizhvC/mods/clockwork-0.5.6.jar" class="btn-download" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download
+          </a>
+        </div>
+
+        <!-- MOD 6 -->
+        <div class="download-card">
+          <div class="mod-info">
+            <span class="mod-name">moonlight-1.20-2.16.34-forge.jar</span>
+            <span class="mod-meta">Moonlight Library • Core Lib</span>
+          </div>
+          <a href="https://file.garden/anu7edfYJXGizhvC/mods/moonlight-1.20-2.16.34-forge.jar" class="btn-download" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download
+          </a>
+        </div>
+
+        <!-- MOD 7 -->
+        <div class="download-card">
+          <div class="mod-info">
+            <span class="mod-name">vs_sup_fix-1.20.1-forge-2.0.1.jar</span>
+            <span class="mod-meta">VS Sup Fix • Compatibility Patch</span>
+          </div>
+          <a href="https://file.garden/anu7edfYJXGizhvC/mods/vs_sup_fix-1.20.1-forge-2.0.1.jar" class="btn-download" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download
+          </a>
+        </div>
+
+        <!-- MOD 8 -->
+        <div class="download-card">
+          <div class="mod-info">
+            <span class="mod-name">nirvana-forge-1.2.5.jar</span>
+            <span class="mod-meta">Nirvana • Performance & Tweaks</span>
+          </div>
+          <a href="https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar" class="btn-download" target="_blank" download>
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; 2026 pedro.jar. Todos os direitos reservados. Não afiliado à Mojang Studios.</p>
+  </footer>
+
+</body>
+</html>
