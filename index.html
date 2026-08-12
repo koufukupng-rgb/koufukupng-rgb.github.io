@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* VARIÁVEIS DE CORES & CONFIGURAÇÕES GERAIS */
     :root {
       --bg-dark: #0f1319;
       --bg-card: #181f2a;
@@ -40,21 +39,8 @@
       display: flex;
       flex-direction: column;
       line-height: 1.6;
-      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* CABEÇALHO / NAVBAR */
     header {
       background-color: rgba(24, 31, 42, 0.8);
       backdrop-filter: blur(12px);
@@ -73,7 +59,6 @@
       align-items: center;
     }
 
-    /* LOGO: pedro.jar */
     .logo {
       display: flex;
       align-items: center;
@@ -82,11 +67,6 @@
       color: var(--text-main);
       font-size: 1.5rem;
       font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .logo-name {
-      font-family: var(--font-main);
     }
 
     .logo-ext {
@@ -98,14 +78,6 @@
       padding: 2px 8px;
       border-radius: 6px;
       margin-left: 2px;
-      box-shadow: 0 0 10px rgba(0, 112, 243, 0.15);
-      transition: all 0.3s ease;
-    }
-
-    .logo:hover .logo-ext {
-      background-color: var(--accent-blue);
-      color: #ffffff;
-      box-shadow: 0 0 15px var(--accent-glow);
     }
 
     .nav-status {
@@ -124,7 +96,6 @@
       box-shadow: 0 0 8px #10b981;
     }
 
-    /* CONTEÚDO PRINCIPAL */
     main {
       max-width: 1100px;
       width: 100%;
@@ -133,10 +104,9 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 3.5rem;
+      gap: 2.5rem;
     }
 
-    /* HERO SECTION */
     .hero {
       text-align: center;
     }
@@ -153,11 +123,67 @@
     .hero p {
       color: var(--text-muted);
       font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
     }
 
-    /* SEÇÕES DE CONTEÚDO */
+    /* PAINEL DE PESQUISA E FILTROS */
+    .search-section {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 18px;
+      background-color: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .filter-title {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-right: 4px;
+      font-weight: 600;
+    }
+
+    .tag-btn {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tag-btn:hover, .tag-btn.active {
+      background-color: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+    }
+
     .section-title {
       font-size: 1.5rem;
       font-weight: 700;
@@ -202,7 +228,6 @@
       justify-content: center;
       font-weight: bold;
       font-size: 1.2rem;
-      box-shadow: 0 4px 12px var(--accent-glow);
     }
 
     .modpack-title {
@@ -214,47 +239,23 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
     }
 
-    /* TAGS / BADGES DE IDENTIFICAÇÃO */
+    /* BADGES */
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.3px;
     }
 
-    .badge-original {
-      background-color: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: #34d399;
-    }
+    .badge-original { background-color: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; }
+    .badge-pirata { background-color: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; }
+    .badge-tag { background-color: rgba(0, 112, 243, 0.15); border: 1px solid rgba(0, 112, 243, 0.3); color: #60a5fa; }
 
-    .badge-pirata {
-      background-color: rgba(245, 158, 11, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      color: #fbbf24;
-    }
-
-    .badge-modpack {
-      background-color: rgba(0, 112, 243, 0.15);
-      border: 1px solid rgba(0, 112, 243, 0.4);
-      color: #60a5fa;
-    }
-
-    .badge-mod {
-      background-color: rgba(168, 85, 247, 0.15);
-      border: 1px solid rgba(168, 85, 247, 0.4);
-      color: #c084fc;
-    }
-
-    /* BOTÃO BAIXAR TUDO DO MODPACK */
     .btn-download-all {
       display: inline-flex;
       align-items: center;
@@ -268,17 +269,8 @@
       padding: 8px 16px;
       border-radius: 20px;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25);
-      transition: all 0.25s ease;
     }
 
-    .btn-download-all:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-    }
-
-    /* LISTA DE DOWNLOADS */
     .download-list {
       padding: 1.5rem;
       display: grid;
@@ -295,14 +287,17 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 1rem;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s;
+    }
+
+    .download-card.hidden {
+      display: none !important;
     }
 
     .download-card:hover {
       background-color: var(--bg-card-hover);
       border-color: rgba(0, 112, 243, 0.4);
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
     .mod-info {
@@ -322,7 +317,6 @@
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--text-main);
-      word-break: break-all;
     }
 
     .mod-meta {
@@ -330,7 +324,6 @@
       color: var(--text-muted);
     }
 
-    /* BOTÃO DE DOWNLOAD INDIVIDUAL */
     .btn-download {
       display: inline-flex;
       align-items: center;
@@ -343,66 +336,55 @@
       font-size: 0.9rem;
       padding: 10px 16px;
       border-radius: 8px;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 8px var(--accent-glow);
-    }
-
-    .btn-download:hover {
-      background-color: var(--accent-blue-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px var(--accent-glow);
     }
 
     .btn-download svg {
       width: 16px;
       height: 16px;
       fill: currentColor;
-      transition: transform 0.2s ease;
     }
 
-    .btn-download:hover svg {
-      transform: translateY(2px);
-    }
-
-    /* RODAPÉ */
+    /* RODAPÉ & DOAÇÃO */
     footer {
       border-top: 1px solid var(--border-color);
-      padding: 2rem 1.5rem;
+      padding: 2.5rem 1.5rem;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.85rem;
       background-color: rgba(15, 19, 25, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
     }
 
-    /* RESPONSIVIDADE */
-    @media (max-width: 640px) {
-      .hero h1 {
-        font-size: 1.8rem;
-      }
+    .btn-donation {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-      .modpack-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .modpack-actions {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .download-list {
-        grid-template-columns: 1fr;
-      }
+    .btn-donation:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA DE NAVEGAÇÃO -->
   <header>
     <div class="nav-container">
       <a href="#" class="logo">
-        <span class="logo-name">pedro</span><span class="logo-ext">.jar</span>
+        <span>pedro</span><span class="logo-ext">.jar</span>
       </a>
       <div class="nav-status">
         <div class="status-dot"></div> Repositório Ativo
@@ -410,16 +392,31 @@
     </div>
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL -->
   <main>
     <section class="hero">
       <h1>Modpacks & Mods para Minecraft</h1>
       <p>Baixe modpacks otimizados e arquivos .jar diretamente do repositório oficial.</p>
     </section>
 
-    <!-- SEÇÃO 1: LAUNCHERS RECOMENDADOS -->
+    <!-- BARRA DE PESQUISA E FILTROS DE TAGS -->
+    <section class="search-section">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Pesquisar mods, modpacks ou categorias..." oninput="filtrarMods()">
+      
+      <div class="filter-tags">
+        <span class="filter-title">Filtrar por Tag:</span>
+        <button class="tag-btn active" onclick="filtrarPorTag('todas', this)">Todas</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Automação', this)">Automação</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Construção', this)">Construção</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Desempenho', this)">Desempenho</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Física', this)">Física</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Segurança', this)">Segurança</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Técnico', this)">Técnico</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Utilitário', this)">Utilitário</button>
+      </div>
+    </section>
+
+    <!-- LAUNCHERS RECOMENDADOS -->
     <section>
-      <!-- PRISM LAUNCHER AGORA É O TÍTULO PRINCIPAL DA SEÇÃO -->
       <div class="modpack-container">
         <div class="modpack-header">
           <div class="modpack-title-group">
@@ -435,184 +432,196 @@
         </div>
 
         <div class="download-list">
-          <!-- CARD 1: PRISM LAUNCHER -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Original Launcher Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
                 <span class="badge badge-original">Original</span>
+                <span class="badge badge-tag">Utilitário</span>
               </div>
               <span class="mod-name">Prism Launcher (Oficial)</span>
-              <span class="mod-meta">Launcher rápido e de código aberto. Ideal para organizar mods Forge/Fabric.</span>
+              <span class="mod-meta">Gerenciador de instâncias leve e rápido.</span>
             </div>
-            <a href="https://prismlauncher.org/download/" class="btn-download" target="_blank">
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Ir para o Download
-            </a>
+            <a href="https://prismlauncher.org/download/" class="btn-download" target="_blank">Download</a>
           </div>
 
-          <!-- CARD 2: NOVA ABA ABAIXO DO PRISM LAUNCHER -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Pirata Launcher Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
                 <span class="badge badge-pirata">Pirata / Unofficial</span>
+                <span class="badge badge-tag">Utilitário</span>
               </div>
               <span class="mod-name">Kenshi Launcher / Modded Edition</span>
-              <span class="mod-meta">Opção alternativa para quem não possui conta original do Minecraft.</span>
+              <span class="mod-meta">Opção para quem joga sem conta Microsoft.</span>
             </div>
-            <a href="#" class="btn-download" target="_blank">
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Ir para o Download
-            </a>
+            <a href="#" class="btn-download" target="_blank">Download</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODS FAVORITOS -->
+    <section>
+      <h2 class="section-title">⭐ Mods Favoritos</h2>
+      <div class="modpack-container">
+        <div class="download-list">
+          
+          <div class="download-card" data-tags="Automação Técnico Construção">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Automação</span>
+                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag">Construção</span>
+              </div>
+              <span class="mod-name">Create (1.20.1-6.0.8)</span>
+              <span class="mod-meta">Engrenagens, máquinas estéticas e sistemas automatizados.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/create-1.20.1-6.0.8.jar" class="btn-download" target="_blank" download>Download</a>
+          </div>
+
+          <div class="download-card" data-tags="Segurança Utilitário Técnico">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Segurança</span>
+                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-tag">Técnico</span>
+              </div>
+              <span class="mod-name">SecurityCraft (1.20.1 - v1.10.2.1)</span>
+              <span class="mod-meta">Sistemas de proteção, cofres, lasers e scanners de retina.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/%5B1.20.1%5D%20SecurityCraft%20v1.10.2.1.jar" class="btn-download" target="_blank" download>Download</a>
+          </div>
+
+          <div class="download-card" data-tags="Construção Utilitário Técnico">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Construção</span>
+                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-tag">Técnico</span>
+              </div>
+              <span class="mod-name">WorldEdit (7.2.15)</span>
+              <span class="mod-meta">Editor de mapa em tempo real via comandos e machados.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/worldedit-mod-7.2.15.jar" class="btn-download" target="_blank" download>Download</a>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- SEÇÃO 2: MODPACKS DISPONÍVEIS -->
+    <!-- MODPACK: PEDRO'S PHYSICS -->
     <section>
       <h2 class="section-title">📦 Modpacks Disponíveis</h2>
       <div class="modpack-container">
         
-        <!-- CABEÇALHO DO MODPACK -->
         <div class="modpack-header">
           <div class="modpack-title-group">
             <div class="modpack-icon">⚛️</div>
             <div>
-              <h2 class="modpack-title">Pedro's physics</h2>
+              <h2 class="modpack-title">Pedro's Physics</h2>
               <span style="font-size: 0.85rem; color: var(--text-muted);">Minecraft 1.20.1 • Forge</span>
             </div>
           </div>
 
           <div class="modpack-actions">
-            <span class="badge badge-modpack">Modpack</span>
-            <button class="btn-download-all" onclick="baixarTudoDoPack(this)">
-              📥 Baixar Todos os Mods
-            </button>
+            <button class="btn-download-all" onclick="baixarTudoDoPack(this)">📥 Baixar Todos os Mods</button>
           </div>
         </div>
 
-        <!-- LISTA DE MODS -->
         <div class="download-list">
           
-          <!-- MOD 1 -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Física Técnico Automação">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-mod">Mod</span>
+                <span class="badge badge-tag">Física</span>
+                <span class="badge badge-tag">Técnico</span>
               </div>
-              <span class="mod-name">valkyrienskies-120-2.4.11.jar</span>
-              <span class="mod-meta">Valkyrien Skies • Physics Engine</span>
+              <span class="mod-name">Valkyrien Skies (1.20 - 2.4.11)</span>
+              <span class="mod-meta">Motor de física para criação de navios e estruturas móveis.</span>
             </div>
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/valkyrienskies-120-2.4.11.jar" class="btn-download mod-link" target="_blank" download>
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Download
-            </a>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/valkyrienskies-120-2.4.11.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
-          <!-- MOD 2 -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Utilitário Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-mod">Mod</span>
+                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-tag">Técnico</span>
               </div>
-              <span class="mod-name">kotlinforforge-4.12.0-all.jar</span>
-              <span class="mod-meta">Kotlin for Forge • Library</span>
+              <span class="mod-name">Kotlin For Forge (4.12.0)</span>
+              <span class="mod-meta">Biblioteca essencial de suporte para código Kotlin.</span>
             </div>
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/kotlinforforge-4.12.0-all.jar" class="btn-download mod-link" target="_blank" download>
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Download
-            </a>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/kotlinforforge-4.12.0-all.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
-          <!-- MOD 3 -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Automação Construção Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-mod">Mod</span>
+                <span class="badge badge-tag">Automação</span>
+                <span class="badge badge-tag">Construção</span>
               </div>
-              <span class="mod-name">create-1.20.1-6.0.8.jar</span>
-              <span class="mod-meta">Create Mod • Automation & Tech</span>
+              <span class="mod-name">Create (1.20.1 - 6.0.8)</span>
+              <span class="mod-meta">Engrenagens e automação estética mecânica.</span>
             </div>
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/create-1.20.1-6.0.8.jar" class="btn-download mod-link" target="_blank" download>
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Download
-            </a>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/create-1.20.1-6.0.8.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
-          <!-- MOD 4 -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Construção Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-mod">Mod</span>
+                <span class="badge badge-tag">Construção</span>
+                <span class="badge badge-tag">Utilitário</span>
               </div>
-              <span class="mod-name">supplementaries-1.20-3.1.43-forge.jar</span>
-              <span class="mod-meta">Supplementaries • Content & Decor</span>
+              <span class="mod-name">Supplementaries (1.20 - 3.1.43)</span>
+              <span class="mod-meta">Blocos decorativos, sinalizadores e melhorias do jogo.</span>
             </div>
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/supplementaries-1.20-3.1.43-forge.jar" class="btn-download mod-link" target="_blank" download>
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Download
-            </a>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/supplementaries-1.20-3.1.43-forge.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
-          <!-- MOD 5 -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Física Automação Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-mod">Mod</span>
+                <span class="badge badge-tag">Física</span>
+                <span class="badge badge-tag">Automação</span>
               </div>
-              <span class="mod-name">clockwork-0.5.6.jar</span>
-              <span class="mod-meta">Clockwork • Create & VS Addon</span>
+              <span class="mod-name">Clockwork (0.5.6)</span>
+              <span class="mod-meta">Integração física entre o Create e o Valkyrien Skies.</span>
             </div>
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/clockwork-0.5.6.jar" class="btn-download mod-link" target="_blank" download>
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Download
-            </a>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/clockwork-0.5.6.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
-          <!-- MOD 6 -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Utilitário Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-mod">Mod</span>
+                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-tag">Técnico</span>
               </div>
-              <span class="mod-name">moonlight-1.20-2.16.34-forge.jar</span>
-              <span class="mod-meta">Moonlight Library • Core Lib</span>
+              <span class="mod-name">Moonlight Library (1.20 - 2.16.34)</span>
+              <span class="mod-meta">Biblioteca base necessária para o Supplementaries.</span>
             </div>
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/moonlight-1.20-2.16.34-forge.jar" class="btn-download mod-link" target="_blank" download>
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Download
-            </a>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/moonlight-1.20-2.16.34-forge.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
-          <!-- MOD 7 -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Desempenho Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-mod">Mod</span>
+                <span class="badge badge-tag">Desempenho</span>
+                <span class="badge badge-tag">Técnico</span>
               </div>
-              <span class="mod-name">vs_sup_fix-1.20.1-forge-2.0.1.jar</span>
-              <span class="mod-meta">VS Sup Fix • Compatibility Patch</span>
+              <span class="mod-name">VS Sup Fix (1.20.1 - 2.0.1)</span>
+              <span class="mod-meta">Correção de compatibilidade técnica e bugs.</span>
             </div>
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/vs_sup_fix-1.20.1-forge-2.0.1.jar" class="btn-download mod-link" target="_blank" download>
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Download
-            </a>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/vs_sup_fix-1.20.1-forge-2.0.1.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
-          <!-- MOD 8 -->
-          <div class="download-card">
+          <div class="download-card" data-tags="Desempenho Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-mod">Mod</span>
+                <span class="badge badge-tag">Desempenho</span>
               </div>
-              <span class="mod-name">nirvana-forge-1.2.5.jar</span>
-              <span class="mod-meta">Nirvana • Performance & Tweaks</span>
+              <span class="mod-name">Nirvana Forge (1.2.5)</span>
+              <span class="mod-meta">Otimização de performance e aumento de FPS.</span>
             </div>
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar" class="btn-download mod-link" target="_blank" download>
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Download
-            </a>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
         </div>
@@ -620,13 +629,47 @@
     </section>
   </main>
 
-  <!-- RODAPÉ -->
   <footer>
+    <a href="https://livepix.gg/papaisupernoob" target="_blank" class="btn-donation">
+      🧀 Me doe um pão de queijo
+    </a>
     <p>&copy; 2026 pedro.jar. Todos os direitos reservados. Não afiliado à Mojang Studios.</p>
   </footer>
 
-  <!-- SCRIPT PARA O BOTÃO DE BAIXAR TUDO -->
   <script>
+    // LÓGICA DE FILTRAGEM POR TEXTO E TAGS
+    let tagSelecionada = 'todas';
+
+    function filtrarMods() {
+      const textoBusca = document.getElementById('searchInput').value.toLowerCase();
+      const todosCards = document.querySelectorAll('.download-card');
+
+      todosCards.forEach(card => {
+        const nomeMod = card.querySelector('.mod-name').textContent.toLowerCase();
+        const metaMod = card.querySelector('.mod-meta').textContent.toLowerCase();
+        const tagsCard = (card.getAttribute('data-tags') || '').toLowerCase();
+
+        const atendeTexto = nomeMod.includes(textoBusca) || metaMod.includes(textoBusca) || tagsCard.includes(textoBusca);
+        const atendeTag = tagSelecionada === 'todas' || tagsCard.includes(tagSelecionada.toLowerCase());
+
+        if (atendeTexto && atendeTag) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function filtrarPorTag(tag, botao) {
+      tagSelecionada = tag;
+      
+      document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
+      botao.classList.add('active');
+
+      filtrarMods();
+    }
+
+    // BAIXAR TODOS
     function baixarTudoDoPack(botao) {
       const mensagemAviso = "se seu computador for fraco, não baixe tudo de uma vez, isso pode acabar fechando seu navegador, deseja continuar mesmo assim?";
 
