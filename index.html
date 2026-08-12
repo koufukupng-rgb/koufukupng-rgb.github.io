@@ -131,12 +131,14 @@
       margin: 0 auto;
       padding: 3rem 1.5rem;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
     }
 
     /* HERO SECTION */
     .hero {
       text-align: center;
-      margin-bottom: 3.5rem;
     }
 
     .hero h1 {
@@ -155,7 +157,16 @@
       margin: 0 auto;
     }
 
-    /* CONTAINER DO MODPACK */
+    /* SEÇÕES DE CONTEÚDO */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .modpack-container {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -238,10 +249,6 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
       background: linear-gradient(135deg, #059669 0%, #047857 100%);
-    }
-
-    .btn-download-all:active {
-      transform: translateY(0);
     }
 
     /* LISTA DE DOWNLOADS */
@@ -377,127 +384,161 @@
       <p>Baixe modpacks otimizados e arquivos .jar diretamente do repositório oficial.</p>
     </section>
 
-    <!-- SEÇÃO DO MODPACK -->
-    <section class="modpack-container">
-      
-      <!-- CABEÇALHO DO MODPACK -->
-      <div class="modpack-header">
-        <div class="modpack-title-group">
-          <div class="modpack-icon">⚛️</div>
-          <div>
-            <h2 class="modpack-title">Pedro's physics</h2>
-            <span style="font-size: 0.85rem; color: var(--text-muted);">Minecraft 1.20.1 • Forge</span>
+    <!-- SEÇÃO 1: LAUNCHERS RECOMENDADOS -->
+    <section>
+      <h2 class="section-title">🚀 Launchers Recomendados</h2>
+      <div class="modpack-container">
+        <div class="modpack-header">
+          <div class="modpack-title-group">
+            <div class="modpack-icon" style="background: linear-gradient(135deg, #a855f7, #6b21a8);">💎</div>
+            <div>
+              <h2 class="modpack-title">Prism Launcher</h2>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Software Livre • Gerenciador de Instâncias</span>
+            </div>
           </div>
+          <span class="modpack-badge">Recomendado</span>
         </div>
 
-        <div class="modpack-actions">
-          <!-- BOTÃO PARA BAIXAR TUDO -->
-          <button class="btn-download-all" onclick="baixarTudoDoPack(this)">
-            📥 Baixar Todos os Mods
-          </button>
-          <span class="modpack-badge">8 Mods inclusos</span>
+        <div class="download-list">
+          <!-- CARD PRISM LAUNCHER -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">Prism Launcher (Página Oficial)</span>
+              <span class="mod-meta">Launcher rápido, código aberto e ideal para carregar mods Forge/Fabric.</span>
+            </div>
+            <a href="https://prismlauncher.org/download/" class="btn-download" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Ir para o Site de Download
+            </a>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- LISTA DE MODS -->
-      <div class="download-list">
+    <!-- SEÇÃO 2: MODPACKS -->
+    <section>
+      <h2 class="section-title">📦 Modpacks Disponíveis</h2>
+      <div class="modpack-container">
         
-        <!-- MOD 1 -->
-        <div class="download-card">
-          <div class="mod-info">
-            <span class="mod-name">valkyrienskies-120-2.4.11.jar</span>
-            <span class="mod-meta">Valkyrien Skies • Physics Engine</span>
+        <!-- CABEÇALHO DO MODPACK -->
+        <div class="modpack-header">
+          <div class="modpack-title-group">
+            <div class="modpack-icon">⚛️</div>
+            <div>
+              <h2 class="modpack-title">Pedro's physics</h2>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Minecraft 1.20.1 • Forge</span>
+            </div>
           </div>
-          <a href="https://file.garden/anu7edfYJXGizhvC/mods/valkyrienskies-120-2.4.11.jar" class="btn-download mod-link" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download
-          </a>
+
+          <div class="modpack-actions">
+            <!-- BOTÃO PARA BAIXAR TUDO -->
+            <button class="btn-download-all" onclick="baixarTudoDoPack(this)">
+              📥 Baixar Todos os Mods
+            </button>
+            <span class="modpack-badge">8 Mods inclusos</span>
+          </div>
         </div>
 
-        <!-- MOD 2 -->
-        <div class="download-card">
-          <div class="mod-info">
-            <span class="mod-name">kotlinforforge-4.12.0-all.jar</span>
-            <span class="mod-meta">Kotlin for Forge • Library</span>
+        <!-- LISTA DE MODS -->
+        <div class="download-list">
+          
+          <!-- MOD 1 -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">valkyrienskies-120-2.4.11.jar</span>
+              <span class="mod-meta">Valkyrien Skies • Physics Engine</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/valkyrienskies-120-2.4.11.jar" class="btn-download mod-link" target="_blank" download>
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download
+            </a>
           </div>
-          <a href="https://file.garden/anu7edfYJXGizhvC/mods/kotlinforforge-4.12.0-all.jar" class="btn-download mod-link" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download
-          </a>
-        </div>
 
-        <!-- MOD 3 -->
-        <div class="download-card">
-          <div class="mod-info">
-            <span class="mod-name">create-1.20.1-6.0.8.jar</span>
-            <span class="mod-meta">Create Mod • Automation & Tech</span>
+          <!-- MOD 2 -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">kotlinforforge-4.12.0-all.jar</span>
+              <span class="mod-meta">Kotlin for Forge • Library</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/kotlinforforge-4.12.0-all.jar" class="btn-download mod-link" target="_blank" download>
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download
+            </a>
           </div>
-          <a href="https://file.garden/anu7edfYJXGizhvC/mods/create-1.20.1-6.0.8.jar" class="btn-download mod-link" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download
-          </a>
-        </div>
 
-        <!-- MOD 4 -->
-        <div class="download-card">
-          <div class="mod-info">
-            <span class="mod-name">supplementaries-1.20-3.1.43-forge.jar</span>
-            <span class="mod-meta">Supplementaries • Content & Decor</span>
+          <!-- MOD 3 -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">create-1.20.1-6.0.8.jar</span>
+              <span class="mod-meta">Create Mod • Automation & Tech</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/create-1.20.1-6.0.8.jar" class="btn-download mod-link" target="_blank" download>
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download
+            </a>
           </div>
-          <a href="https://file.garden/anu7edfYJXGizhvC/mods/supplementaries-1.20-3.1.43-forge.jar" class="btn-download mod-link" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download
-          </a>
-        </div>
 
-        <!-- MOD 5 -->
-        <div class="download-card">
-          <div class="mod-info">
-            <span class="mod-name">clockwork-0.5.6.jar</span>
-            <span class="mod-meta">Clockwork • Create & VS Addon</span>
+          <!-- MOD 4 -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">supplementaries-1.20-3.1.43-forge.jar</span>
+              <span class="mod-meta">Supplementaries • Content & Decor</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/supplementaries-1.20-3.1.43-forge.jar" class="btn-download mod-link" target="_blank" download>
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download
+            </a>
           </div>
-          <a href="https://file.garden/anu7edfYJXGizhvC/mods/clockwork-0.5.6.jar" class="btn-download mod-link" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download
-          </a>
-        </div>
 
-        <!-- MOD 6 -->
-        <div class="download-card">
-          <div class="mod-info">
-            <span class="mod-name">moonlight-1.20-2.16.34-forge.jar</span>
-            <span class="mod-meta">Moonlight Library • Core Lib</span>
+          <!-- MOD 5 -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">clockwork-0.5.6.jar</span>
+              <span class="mod-meta">Clockwork • Create & VS Addon</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/clockwork-0.5.6.jar" class="btn-download mod-link" target="_blank" download>
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download
+            </a>
           </div>
-          <a href="https://file.garden/anu7edfYJXGizhvC/mods/moonlight-1.20-2.16.34-forge.jar" class="btn-download mod-link" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download
-          </a>
-        </div>
 
-        <!-- MOD 7 -->
-        <div class="download-card">
-          <div class="mod-info">
-            <span class="mod-name">vs_sup_fix-1.20.1-forge-2.0.1.jar</span>
-            <span class="mod-meta">VS Sup Fix • Compatibility Patch</span>
+          <!-- MOD 6 -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">moonlight-1.20-2.16.34-forge.jar</span>
+              <span class="mod-meta">Moonlight Library • Core Lib</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/moonlight-1.20-2.16.34-forge.jar" class="btn-download mod-link" target="_blank" download>
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download
+            </a>
           </div>
-          <a href="https://file.garden/anu7edfYJXGizhvC/mods/vs_sup_fix-1.20.1-forge-2.0.1.jar" class="btn-download mod-link" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download
-          </a>
-        </div>
 
-        <!-- MOD 8 -->
-        <div class="download-card">
-          <div class="mod-info">
-            <span class="mod-name">nirvana-forge-1.2.5.jar</span>
-            <span class="mod-meta">Nirvana • Performance & Tweaks</span>
+          <!-- MOD 7 -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">vs_sup_fix-1.20.1-forge-2.0.1.jar</span>
+              <span class="mod-meta">VS Sup Fix • Compatibility Patch</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/vs_sup_fix-1.20.1-forge-2.0.1.jar" class="btn-download mod-link" target="_blank" download>
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download
+            </a>
           </div>
-          <a href="https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar" class="btn-download mod-link" target="_blank" download>
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download
-          </a>
-        </div>
 
+          <!-- MOD 8 -->
+          <div class="download-card">
+            <div class="mod-info">
+              <span class="mod-name">nirvana-forge-1.2.5.jar</span>
+              <span class="mod-meta">Nirvana • Green Herbs</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar" class="btn-download mod-link" target="_blank" download>
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download
+            </a>
+          </div>
+
+        </div>
       </div>
     </section>
   </main>
@@ -510,7 +551,7 @@
   <!-- SCRIPT PARA O BOTÃO DE BAIXAR TUDO -->
   <script>
     function baixarTudoDoPack(botao) {
-      const mensagemAviso = "se seu computador for fraco, não baixe tudo de uma vez, isso pode acabar fechando seu navegador, deseja continuar mesmo assim?";
+      const mensagemAviso = "Se seu computador for fraco, não use esta função, isso pode acabar fechando seu navegador, deseja continuar mesmo assim?";
 
       if (confirm(mensagemAviso)) {
         const modpackContainer = botao.closest('.modpack-container');
@@ -530,7 +571,7 @@
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-          }, index * 400); // Pausa de 400ms para evitar sobrecarga no navegador
+          }, index * 400);
         });
       }
     }
