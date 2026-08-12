@@ -213,18 +213,45 @@
     .modpack-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
-    .modpack-badge {
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      padding: 6px 14px;
+    /* TAGS / BADGES DE IDENTIFICAÇÃO */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
       border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-original {
+      background-color: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    .badge-pirata {
+      background-color: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+
+    .badge-modpack {
+      background-color: rgba(0, 112, 243, 0.15);
+      border: 1px solid rgba(0, 112, 243, 0.4);
+      color: #60a5fa;
+    }
+
+    .badge-mod {
+      background-color: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #c084fc;
     }
 
     /* BOTÃO BAIXAR TUDO DO MODPACK */
@@ -281,7 +308,13 @@
     .mod-info {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
+    }
+
+    .mod-header-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
     }
 
     .mod-name {
@@ -386,7 +419,7 @@
 
     <!-- SEÇÃO 1: LAUNCHERS RECOMENDADOS -->
     <section>
-      <h2 class="section-title">🚀 Launchers Recomendados</h2>
+      <!-- PRISM LAUNCHER AGORA É O TÍTULO PRINCIPAL DA SEÇÃO -->
       <div class="modpack-container">
         <div class="modpack-header">
           <div class="modpack-title-group">
@@ -396,26 +429,47 @@
               <span style="font-size: 0.85rem; color: var(--text-muted);">Software Livre • Gerenciador de Instâncias</span>
             </div>
           </div>
-          <span class="modpack-badge">Recomendado</span>
+          <div class="modpack-actions">
+            <span class="badge badge-original">🔑 Requer Conta Microsoft</span>
+          </div>
         </div>
 
         <div class="download-list">
-          <!-- CARD PRISM LAUNCHER -->
+          <!-- CARD 1: PRISM LAUNCHER -->
           <div class="download-card">
             <div class="mod-info">
-              <span class="mod-name">Prism Launcher (Página Oficial)</span>
-              <span class="mod-meta">Launcher rápido, código aberto e ideal para carregar mods Forge/Fabric.</span>
+              <div class="mod-header-tags">
+                <span class="badge badge-original">Original</span>
+              </div>
+              <span class="mod-name">Prism Launcher (Oficial)</span>
+              <span class="mod-meta">Launcher rápido e de código aberto. Ideal para organizar mods Forge/Fabric.</span>
             </div>
             <a href="https://prismlauncher.org/download/" class="btn-download" target="_blank">
               <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-              Ir para o Site de Download
+              Ir para o Download
             </a>
           </div>
+
+          <!-- CARD 2: NOVA ABA ABAIXO DO PRISM LAUNCHER -->
+          <div class="download-card">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-pirata">Pirata / Unofficial</span>
+              </div>
+              <span class="mod-name">Kenshi Launcher / Modded Edition</span>
+              <span class="mod-meta">Opção alternativa para quem não possui conta original do Minecraft.</span>
+            </div>
+            <a href="#" class="btn-download" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Ir para o Download
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- SEÇÃO 2: MODPACKS -->
+    <!-- SEÇÃO 2: MODPACKS DISPONÍVEIS -->
     <section>
       <h2 class="section-title">📦 Modpacks Disponíveis</h2>
       <div class="modpack-container">
@@ -431,11 +485,10 @@
           </div>
 
           <div class="modpack-actions">
-            <!-- BOTÃO PARA BAIXAR TUDO -->
+            <span class="badge badge-modpack">Modpack</span>
             <button class="btn-download-all" onclick="baixarTudoDoPack(this)">
               📥 Baixar Todos os Mods
             </button>
-            <span class="modpack-badge">8 Mods inclusos</span>
           </div>
         </div>
 
@@ -445,6 +498,9 @@
           <!-- MOD 1 -->
           <div class="download-card">
             <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-mod">Mod</span>
+              </div>
               <span class="mod-name">valkyrienskies-120-2.4.11.jar</span>
               <span class="mod-meta">Valkyrien Skies • Physics Engine</span>
             </div>
@@ -457,6 +513,9 @@
           <!-- MOD 2 -->
           <div class="download-card">
             <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-mod">Mod</span>
+              </div>
               <span class="mod-name">kotlinforforge-4.12.0-all.jar</span>
               <span class="mod-meta">Kotlin for Forge • Library</span>
             </div>
@@ -469,6 +528,9 @@
           <!-- MOD 3 -->
           <div class="download-card">
             <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-mod">Mod</span>
+              </div>
               <span class="mod-name">create-1.20.1-6.0.8.jar</span>
               <span class="mod-meta">Create Mod • Automation & Tech</span>
             </div>
@@ -481,6 +543,9 @@
           <!-- MOD 4 -->
           <div class="download-card">
             <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-mod">Mod</span>
+              </div>
               <span class="mod-name">supplementaries-1.20-3.1.43-forge.jar</span>
               <span class="mod-meta">Supplementaries • Content & Decor</span>
             </div>
@@ -493,6 +558,9 @@
           <!-- MOD 5 -->
           <div class="download-card">
             <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-mod">Mod</span>
+              </div>
               <span class="mod-name">clockwork-0.5.6.jar</span>
               <span class="mod-meta">Clockwork • Create & VS Addon</span>
             </div>
@@ -505,6 +573,9 @@
           <!-- MOD 6 -->
           <div class="download-card">
             <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-mod">Mod</span>
+              </div>
               <span class="mod-name">moonlight-1.20-2.16.34-forge.jar</span>
               <span class="mod-meta">Moonlight Library • Core Lib</span>
             </div>
@@ -517,6 +588,9 @@
           <!-- MOD 7 -->
           <div class="download-card">
             <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-mod">Mod</span>
+              </div>
               <span class="mod-name">vs_sup_fix-1.20.1-forge-2.0.1.jar</span>
               <span class="mod-meta">VS Sup Fix • Compatibility Patch</span>
             </div>
@@ -529,8 +603,11 @@
           <!-- MOD 8 -->
           <div class="download-card">
             <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-mod">Mod</span>
+              </div>
               <span class="mod-name">nirvana-forge-1.2.5.jar</span>
-              <span class="mod-meta">Nirvana • Green Herbs</span>
+              <span class="mod-meta">Nirvana • Performance & Tweaks</span>
             </div>
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar" class="btn-download mod-link" target="_blank" download>
               <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
@@ -551,7 +628,7 @@
   <!-- SCRIPT PARA O BOTÃO DE BAIXAR TUDO -->
   <script>
     function baixarTudoDoPack(botao) {
-      const mensagemAviso = "Se seu computador for fraco, não use esta função, isso pode acabar fechando seu navegador, deseja continuar mesmo assim?";
+      const mensagemAviso = "se seu computador for fraco, não baixe tudo de uma vez, isso pode acabar fechando seu navegador, deseja continuar mesmo assim?";
 
       if (confirm(mensagemAviso)) {
         const modpackContainer = botao.closest('.modpack-container');
