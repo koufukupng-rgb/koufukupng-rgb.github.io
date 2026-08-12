@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- COLE O CÓDIGO DO ADSENSE BEM AQUI ABAIXO -->
+  <!-- ADSENSE -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8052414089818939"
      crossorigin="anonymous"></script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>pedro.jar | Modpacks & Mods para Minecraft</title>
- 
+  
   <!-- Fonte Inter e Fira Code via Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -340,6 +340,8 @@
       font-size: 0.9rem;
       padding: 10px 16px;
       border-radius: 8px;
+      cursor: pointer;
+      border: none;
     }
 
     .btn-download svg {
@@ -430,12 +432,11 @@
               <span style="font-size: 0.85rem; color: var(--text-muted);">Software Livre • Gerenciador de Instâncias</span>
             </div>
           </div>
-          <div class="modpack-actions">
-            <span class="badge badge-original">🔑 Requer Conta Microsoft</span>
-          </div>
+          <!-- TAG REMOVIDA DAQUI -->
         </div>
 
         <div class="download-list">
+          <!-- CARD 1: PRISM LAUNCHER -->
           <div class="download-card" data-tags="Original Launcher Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
@@ -448,16 +449,17 @@
             <a href="https://prismlauncher.org/download/" class="btn-download" target="_blank">Download</a>
           </div>
 
+          <!-- CARD 2: TLAUNCHER COM POPUP DE AVISO -->
           <div class="download-card" data-tags="Pirata Launcher Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
                 <span class="badge badge-pirata">Pirata / Unofficial</span>
                 <span class="badge badge-tag">Utilitário</span>
               </div>
-              <span class="mod-name">Kenshi Launcher / Modded Edition</span>
+              <span class="mod-name">TLauncher</span>
               <span class="mod-meta">Opção para quem joga sem conta Microsoft.</span>
             </div>
-            <a href="#" class="btn-download" target="_blank">Download</a>
+            <button onclick="baixarTLauncher()" class="btn-download">Download</button>
           </div>
         </div>
       </div>
@@ -641,6 +643,14 @@
   </footer>
 
   <script>
+    // POP-UP DE CONFIRMAÇÃO DO TLAUNCHER
+    function baixarTLauncher() {
+      const mensagem = "O TLauncher, não é considerado seguro pela comunidade, pedrojar.vercel.app não tem responsabilidades por nenhum possivel dano ao seu computador ou ao seus dados, deseja continuar?";
+      if (confirm(mensagem)) {
+        window.open('https://tlauncher.org/', '_blank');
+      }
+    }
+
     // LÓGICA DE FILTRAGEM POR TEXTO E TAGS
     let tagSelecionada = 'todas';
 
@@ -673,7 +683,7 @@
       filtrarMods();
     }
 
-    // BAIXAR TODOS
+    // BAIXAR TODOS OS MODS DO PACK
     function baixarTudoDoPack(botao) {
       const mensagemAviso = "se seu computador for fraco, não baixe tudo de uma vez, isso pode acabar fechando seu navegador, deseja continuar mesmo assim?";
 
