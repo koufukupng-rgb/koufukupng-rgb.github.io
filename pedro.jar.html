@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamer HUD Interface</title>
+  <style>
+    /* VARIABLES & RESET */
+    :root {
+      --bg-color: #0b0e14;
+      --card-bg: rgba(18, 24, 38, 0.75);
+      --primary-neon: #00ffcc;
+      --secondary-neon: #ff0055;
+      --accent-neon: #7000ff;
+      --text-color: #e0e6ed;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-family);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* BACKGROUND ANIMATION & SCANLINES */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background-size: 100% 4px, 6px 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* MAIN CONTAINER (HUD FRAME) */
+    .hud-container {
+      width: 90%;
+      max-width: 1000px;
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.15), inset 0 0 15px rgba(0, 255, 204, 0.05);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--primary-neon);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      background-color: var(--primary-neon);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary-neon);
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 0 0 8px var(--primary-neon);
+    }
+
+    .system-status {
+      font-size: 0.85rem;
+      color: var(--primary-neon);
+      border: 1px solid var(--primary-neon);
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* GRID LAYOUT */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* HUD CARDS */
+    .card {
+      background: rgba(10, 14, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 3px solid var(--accent-neon);
+      padding: 1.5rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-left-color: var(--primary-neon);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 204, 0.2);
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* STATS & PROGRESS BARS */
+    .stat-row {
+      margin-bottom: 1rem;
+    }
+
+    .stat-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      color: #a0aec0;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-neon), var(--primary-neon));
+      box-shadow: 0 0 8px var(--primary-neon);
+      transition: width 0.5s ease;
+    }
+
+    /* GAMER BUTTONS */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .btn-hud {
+      background: transparent;
+      color: var(--primary-neon);
+      border: 1px solid var(--primary-neon);
+      padding: 0.8rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-hud:hover {
+      background: var(--primary-neon);
+      color: #000;
+      box-shadow: 0 0 15px var(--primary-neon);
+    }
+
+    .btn-hud.secondary {
+      color: var(--secondary-neon);
+      border-color: var(--secondary-neon);
+    }
+
+    .btn-hud.secondary:hover {
+      background: var(--secondary-neon);
+      color: #fff;
+      box-shadow: 0 0 15px var(--secondary-neon);
+    }
+
+    /* ANIMATIONS */
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hud-container">
+    <header>
+      <div class="title-group">
+        <div class="status-dot"></div>
+        <h1>Command Center</h1>
+      </div>
+      <div class="system-status">System: Online</div>
+    </header>
+
+    <div class="dashboard-grid">
+      <!-- Módulo 1: Estatísticas -->
+      <div class="card">
+        <h2>Recursos do Sistema</h2>
+        
+        <div class="stat-row">
+          <div class="stat-label">
+            <span>Core Performance</span>
+            <span>88%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 88%;"></div>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-label">
+            <span>Sincronização de Rede</span>
+            <span>64%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 64%; background: linear-gradient(90deg, var(--accent-neon), var(--secondary-neon)); box-shadow: 0 0 8px var(--secondary-neon);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 2: Ações do Painel -->
+      <div class="card">
+        <h2>Controles do Painel</h2>
+        <div class="btn-group">
+          <button class="btn-hud" onclick="alert('Iniciando sequência...')">Executar Sequência</button>
+          <button class="btn-hud secondary" onclick="alert('Limpeza de Cache executada!')">Purgar Dados</button>
+        </div>
+      </div>
+
+      <!-- Módulo 3: Status da Missão/Ferramenta -->
+      <div class="card">
+        <h2>Terminal de Log</h2>
+        <p style="font-size: 0.85rem; color: #a0aec0; line-height: 1.5;">
+          > Módulo HUD carregado com sucesso.<br>
+          > Aguardando entrada do usuário...<br>
+          > Conexão segura estabelecida.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
