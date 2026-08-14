@@ -418,6 +418,7 @@
         <button class="tag-btn" onclick="filtrarPorTag('Desempenho', this)">Desempenho</button>
         <button class="tag-btn" onclick="filtrarPorTag('Física', this)">Física</button>
         <button class="tag-btn" onclick="filtrarPorTag('Segurança', this)">Segurança</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Shaders', this)">Shaders</button>
         <button class="tag-btn" onclick="filtrarPorTag('Técnico', this)">Técnico</button>
         <button class="tag-btn" onclick="filtrarPorTag('Utilitário', this)">Utilitário</button>
       </div>
@@ -462,6 +463,52 @@
             </div>
             <button onclick="baixarTLauncher()" class="btn-download">Download</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHADERS LOADERS (Abaixo dos Launchers) -->
+    <section>
+      <h2 class="section-title">✨ Shaders Loaders</h2>
+      <div class="modpack-container">
+        <div class="download-list">
+          
+          <div class="download-card" data-tags="Shaders Desempenho Utilitário">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Shaders</span>
+                <span class="badge badge-tag">Fabric</span>
+              </div>
+              <span class="mod-name">Iris Shaders (1.20.1)</span>
+              <span class="mod-meta">Suporte completo a shaders de alta performance para Fabric.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/iris-fabric-1.8.8%2Bmc1.21.4.jar" class="btn-download" target="_blank" download>Download</a>
+          </div>
+
+          <div class="download-card" data-tags="Shaders Desempenho Utilitário">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Shaders</span>
+                <span class="badge badge-tag">Forge</span>
+              </div>
+              <span class="mod-name">Oculus (1.20.1 - 1.8.0)</span>
+              <span class="mod-meta">Carregador de shaders para Forge (Requer Embeddium).</span>
+            </div>
+            <button onclick="baixarOculusComEmbeddium()" class="btn-download">Download</button>
+          </div>
+
+          <div class="download-card" data-tags="Desempenho Utilitário Técnico">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Desempenho</span>
+                <span class="badge badge-tag">Forge</span>
+              </div>
+              <span class="mod-name">Embeddium (1.20.1 - 0.3.31)</span>
+              <span class="mod-meta">Otimizador gráfico e dependência obrigatória do Oculus.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/embeddium-0.3.31%2Bmc1.20.1.jar" class="btn-download" target="_blank" download>Download</a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -523,7 +570,7 @@
       <div class="modpack-container">
         <div class="modpack-header">
           <div class="modpack-title-group">
-            <div class="modpack-icon" style="background: linear-gradient(135deg, #ef4444, #991b1b);">🔫</div>
+            <div class="modpack-icon" style="background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-hover));">🔫</div>
             <div>
               <h2 class="modpack-title">Pedro's Guns</h2>
               <span style="font-size: 0.85rem; color: var(--text-muted);">Minecraft 1.20.1 • Forge / TacZ</span>
@@ -741,6 +788,32 @@
       const mensagem = "O TLauncher, não é considerado seguro pela comunidade, pedrojar.vercel.app não tem responsabilidades por nenhum possivel dano ao seu computador ou ao seus dados, deseja continuar?";
       if (confirm(mensagem)) {
         window.open('https://tlauncher.org/', '_blank');
+      }
+    }
+
+    // AVISO DO OCULUS + EMBEDDIUM
+    function baixarOculusComEmbeddium() {
+      const mensagem = "Para utilizar o Oculus, o mod Embeddium é OBRIGATÓRIO. O download dos dois mods será iniciado. Deseja continuar?";
+      if (confirm(mensagem)) {
+        // Baixa o Oculus
+        const linkOculus = document.createElement('a');
+        linkOculus.href = "https://file.garden/anu7edfYJXGizhvC/mods/oculus-mc1.20.1-1.8.0.jar";
+        linkOculus.target = "_blank";
+        linkOculus.download = "";
+        document.body.appendChild(linkOculus);
+        linkOculus.click();
+        document.body.removeChild(linkOculus);
+
+        // Baixa o Embeddium após meio segundo
+        setTimeout(() => {
+          const linkEmbeddium = document.createElement('a');
+          linkEmbeddium.href = "https://file.garden/anu7edfYJXGizhvC/mods/embeddium-0.3.31%2Bmc1.20.1.jar";
+          linkEmbeddium.target = "_blank";
+          linkEmbeddium.download = "";
+          document.body.appendChild(linkEmbeddium);
+          linkEmbeddium.click();
+          document.body.removeChild(linkEmbeddium);
+        }, 500);
       }
     }
 
