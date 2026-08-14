@@ -203,6 +203,7 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      margin-bottom: 2rem;
     }
 
     .modpack-header {
@@ -411,6 +412,7 @@
       <div class="filter-tags">
         <span class="filter-title">Filtrar por Tag:</span>
         <button class="tag-btn active" onclick="filtrarPorTag('todas', this)">Todas</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Armas', this)">Armas</button>
         <button class="tag-btn" onclick="filtrarPorTag('Automação', this)">Automação</button>
         <button class="tag-btn" onclick="filtrarPorTag('Construção', this)">Construção</button>
         <button class="tag-btn" onclick="filtrarPorTag('Desempenho', this)">Desempenho</button>
@@ -426,13 +428,12 @@
       <div class="modpack-container">
         <div class="modpack-header">
           <div class="modpack-title-group">
-            <div class="modpack-icon" style="background: linear-gradient(135deg, #a855f7, #6b21a8);">🎈</div>
+            <div class="modpack-icon" style="background: linear-gradient(135deg, #a855f7, #6b21a8);">💎</div>
             <div>
-              <h2 class="modpack-title">Launchers recomendados</h2>
-              <span style="font-size: 0.85rem; color: var(--text-muted);">Launchers para Minecraft • Original e Pirata </span>
+              <h2 class="modpack-title">Prism Launcher</h2>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Software Livre • Gerenciador de Instâncias</span>
             </div>
           </div>
-          <!-- TAG REMOVIDA DAQUI -->
         </div>
 
         <div class="download-list">
@@ -443,7 +444,7 @@
                 <span class="badge badge-original">Original</span>
                 <span class="badge badge-tag">Utilitário</span>
               </div>
-              <span class="mod-name">Prism Launcher</span>
+              <span class="mod-name">Prism Launcher (Oficial)</span>
               <span class="mod-meta">Gerenciador de instâncias leve e rápido.</span>
             </div>
             <a href="https://prismlauncher.org/download/" class="btn-download" target="_blank">Download</a>
@@ -453,11 +454,11 @@
           <div class="download-card" data-tags="Pirata Launcher Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-pirata">Pirata</span>
+                <span class="badge badge-pirata">Pirata / Unofficial</span>
                 <span class="badge badge-tag">Utilitário</span>
               </div>
               <span class="mod-name">TLauncher</span>
-              <span class="mod-meta">Opção para quem joga sem conta Microsoft</span>
+              <span class="mod-meta">Opção para quem joga sem conta Microsoft.</span>
             </div>
             <button onclick="baixarTLauncher()" class="btn-download">Download</button>
           </div>
@@ -514,11 +515,103 @@
       </div>
     </section>
 
-    <!-- MODPACK: PEDRO'S PHYSICS -->
+    <!-- MODPACKS DISPONÍVEIS -->
     <section>
       <h2 class="section-title">📦 Modpacks Disponíveis</h2>
+
+      <!-- MODPACK: PEDRO'S GUNS -->
       <div class="modpack-container">
-        
+        <div class="modpack-header">
+          <div class="modpack-title-group">
+            <div class="modpack-icon" style="background: linear-gradient(135deg, #ef4444, #991b1b);">🔫</div>
+            <div>
+              <h2 class="modpack-title">Pedro's Guns</h2>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Minecraft 1.20.1 • Forge / TacZ</span>
+            </div>
+          </div>
+
+          <div class="modpack-actions">
+            <button class="btn-download-all" onclick="baixarTudoDoPack(this)">📥 Baixar Todos os Mods</button>
+          </div>
+        </div>
+
+        <div class="download-list">
+          
+          <div class="download-card" data-tags="Armas Técnico Utilitário">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Armas</span>
+                <span class="badge badge-tag">Técnico</span>
+              </div>
+              <span class="mod-name">TACz (1.20.1 - 1.1.8 Hotfix)</span>
+              <span class="mod-meta">Armas realistas, animações de recarga e modificações.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/tacz-1.20.1-1.1.8-hotfix.jar" class="btn-download mod-link" target="_blank" download>Download</a>
+          </div>
+
+          <div class="download-card" data-tags="Armas Utilitário">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Armas</span>
+                <span class="badge badge-tag">Utilitário</span>
+              </div>
+              <span class="mod-name">LR Tactical (1.20.1 - 0.4.1)</span>
+              <span class="mod-meta">Adições e miras táticas complementares para o TACz.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/lrtactical-1.20.1-0.4.1.jar" class="btn-download mod-link" target="_blank" download>Download</a>
+          </div>
+
+          <div class="download-card" data-tags="Armas Utilitário">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Armas</span>
+              </div>
+              <span class="mod-name">CS Grenades (1.20.1 - 1.5.2)</span>
+              <span class="mod-meta">Granadas táticas de luz, fumaça e explosivas para o TACz.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/csgrenade-1.20.1-1.5.2.jar" class="btn-download mod-link" target="_blank" download>Download</a>
+          </div>
+
+          <div class="download-card" data-tags="Armas Utilitário">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Armas</span>
+              </div>
+              <span class="mod-name">CS2 Knives Pack</span>
+              <span class="mod-meta">Pacote de facas inspecionáveis estilo Counter-Strike 2.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/Knifes%20pack%20from%20cs2.jar" class="btn-download mod-link" target="_blank" download>Download</a>
+          </div>
+
+          <div class="download-card" data-tags="Armas Técnico">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Armas</span>
+                <span class="badge badge-tag">Técnico</span>
+              </div>
+              <span class="mod-name">QIS4 C4 Bomb (1.6.0)</span>
+              <span class="mod-meta">Explosivo C4 armável e plantável integrado ao TACz.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/qis4c4-1.6.0.jar" class="btn-download mod-link" target="_blank" download>Download</a>
+          </div>
+
+          <div class="download-card" data-tags="Segurança Utilitário Técnico">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-tag">Segurança</span>
+                <span class="badge badge-tag">Utilitário</span>
+              </div>
+              <span class="mod-name">SecurityCraft (1.20.1 - v1.10.2.1)</span>
+              <span class="mod-meta">Sistemas de proteção, lasers, cofres e portas reforçadas.</span>
+            </div>
+            <a href="https://file.garden/anu7edfYJXGizhvC/mods/%5B1.20.1%5D%20SecurityCraft%20v1.10.2.1.jar" class="btn-download mod-link" target="_blank" download>Download</a>
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- MODPACK: PEDRO'S PHYSICS -->
+      <div class="modpack-container">
         <div class="modpack-header">
           <div class="modpack-title-group">
             <div class="modpack-icon">⚛️</div>
