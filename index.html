@@ -260,6 +260,7 @@
     .badge-original { background-color: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; }
     .badge-pirata { background-color: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; }
     .badge-tag { background-color: rgba(0, 112, 243, 0.15); border: 1px solid rgba(0, 112, 243, 0.3); color: #60a5fa; }
+    .badge-danger { background-color: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; }
 
     .btn-download-all {
       display: inline-flex;
@@ -281,8 +282,10 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1rem;
+      align-items: start;
     }
 
+    /* CARD EXPANSÍVEL NO HOVER */
     .download-card {
       background-color: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border-color);
@@ -291,8 +294,10 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 1rem;
-      transition: all 0.3s;
+      gap: 0.8rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
     }
 
     .download-card.hidden {
@@ -301,8 +306,31 @@
 
     .download-card:hover {
       background-color: var(--bg-card-hover);
-      border-color: rgba(0, 112, 243, 0.4);
-      transform: translateY(-3px);
+      border-color: rgba(0, 112, 243, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ÁREA EXPANSÍVEL COM ANIMAÇÃO */
+    .mod-details-expanded {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      background-color: rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      padding: 0 10px;
+      border: 1px solid transparent;
+    }
+
+    .download-card:hover .mod-details-expanded {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 6px;
+      padding: 10px;
+      border-color: rgba(255, 255, 255, 0.05);
     }
 
     .mod-info {
@@ -343,12 +371,11 @@
       border-radius: 8px;
       cursor: pointer;
       border: none;
+      transition: background-color 0.2s;
     }
 
-    .btn-download svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
+    .btn-download:hover {
+      background-color: var(--accent-blue-hover);
     }
 
     /* RODAPÉ & DOAÇÃO */
@@ -417,6 +444,8 @@
         <button class="tag-btn" onclick="filtrarPorTag('Construção', this)">Construção</button>
         <button class="tag-btn" onclick="filtrarPorTag('Desempenho', this)">Desempenho</button>
         <button class="tag-btn" onclick="filtrarPorTag('Física', this)">Física</button>
+
+        <button class="tag-btn" onclick="filtrarPorTag('Hacks', this)">Hacks</button>
         <button class="tag-btn" onclick="filtrarPorTag('Segurança', this)">Segurança</button>
         <button class="tag-btn" onclick="filtrarPorTag('Shaders', this)">Shaders</button>
         <button class="tag-btn" onclick="filtrarPorTag('Técnico', this)">Técnico</button>
@@ -448,10 +477,15 @@
               <span class="mod-name">Prism Launcher (Oficial)</span>
               <span class="mod-meta">Gerenciador de instâncias leve e rápido.</span>
             </div>
+            
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Launcher open-source de alta eficiência com gerenciamento de contas, mods e backups automatizados.
+            </div>
+
             <a href="https://prismlauncher.org/download/" class="btn-download" target="_blank">Download</a>
           </div>
 
-          <!-- CARD 2: TLAUNCHER COM POPUP DE AVISO -->
+          <!-- CARD 2: TLAUNCHER -->
           <div class="download-card" data-tags="Pirata Launcher Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
@@ -461,13 +495,18 @@
               <span class="mod-name">TLauncher</span>
               <span class="mod-meta">Opção para quem joga sem conta Microsoft.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Launcher gratuito popular, porém não oficial. Requer atenção quanto ao uso em computadores pessoais.
+            </div>
+
             <button onclick="baixarTLauncher()" class="btn-download">Download</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SHADERS LOADERS (Abaixo dos Launchers) -->
+    <!-- SHADERS LOADERS -->
     <section>
       <h2 class="section-title">✨ Shaders Loaders</h2>
       <div class="modpack-container">
@@ -482,6 +521,11 @@
               <span class="mod-name">Iris Shaders (1.20.1)</span>
               <span class="mod-meta">Suporte completo a shaders de alta performance para Fabric.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Otimização de renderização gráfica baseada em Sodium, permitindo rodar pacotes de shaders sem travamentos.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/iris-fabric-1.8.8%2Bmc1.21.4.jar" class="btn-download" target="_blank" download>Download</a>
           </div>
 
@@ -494,6 +538,11 @@
               <span class="mod-name">Oculus (1.20.1 - 1.8.0)</span>
               <span class="mod-meta">Carregador de shaders para Forge (Requer Embeddium).</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Port do Iris Shaders adaptado para rodar no motor Forge. Necessita do mod Embeddium instalado.
+            </div>
+
             <button onclick="baixarOculusComEmbeddium()" class="btn-download">Download</button>
           </div>
 
@@ -506,6 +555,11 @@
               <span class="mod-name">Embeddium (1.20.1 - 0.3.31)</span>
               <span class="mod-meta">Otimizador gráfico e dependência obrigatória do Oculus.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Reescrita e otimização de motor de renderização gráfica baseada no Sodium para Forge.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/embeddium-0.3.31%2Bmc1.20.1.jar" class="btn-download" target="_blank" download>Download</a>
           </div>
 
@@ -519,6 +573,25 @@
       <div class="modpack-container">
         <div class="download-list">
           
+          <!-- METEOR CLIENT -->
+          <div class="download-card" data-tags="Hacks Utilitário Fabric">
+            <div class="mod-info">
+              <div class="mod-header-tags">
+                <span class="badge badge-danger">Hacks / Utility</span>
+                <span class="badge badge-tag">Fabric</span>
+              </div>
+              <span class="mod-name">💀 Meteor Client (26.1.2)</span>
+              <span class="mod-meta">Utility HUD client configurável para Minecraft Fabric.</span>
+            </div>
+
+            <div class="mod-details-expanded">
+              <strong>Descrição & Agradecimentos:</strong><br>
+              Um dos mais avançados utilitários para Fabric. Um agradecimento especial a toda a equipe de desenvolvedores do <strong>Meteor Development</strong> pelo incrível trabalho no projeto open-source!
+            </div>
+
+            <button onclick="baixarMeteorClient()" class="btn-download">Download</button>
+          </div>
+
           <div class="download-card" data-tags="Automação Técnico Construção">
             <div class="mod-info">
               <div class="mod-header-tags">
@@ -529,6 +602,11 @@
               <span class="mod-name">Create (1.20.1-6.0.8)</span>
               <span class="mod-meta">Engrenagens, máquinas estéticas e sistemas automatizados.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Adiciona ferramentas tecnológicas baseadas em força rotacional, esteiras rolantes e automação mecânica.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/create-1.20.1-6.0.8.jar" class="btn-download" target="_blank" download>Download</a>
           </div>
 
@@ -542,6 +620,11 @@
               <span class="mod-name">SecurityCraft (1.20.1 - v1.10.2.1)</span>
               <span class="mod-meta">Sistemas de proteção, cofres, lasers e scanners de retina.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Perfeito para proteger suas bases com portas com senha, torretas automáticas e alarmes.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/%5B1.20.1%5D%20SecurityCraft%20v1.10.2.1.jar" class="btn-download" target="_blank" download>Download</a>
           </div>
 
@@ -555,6 +638,11 @@
               <span class="mod-name">WorldEdit (7.2.15)</span>
               <span class="mod-meta">Editor de mapa em tempo real via comandos e machados.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Ferramenta para construtores, permitindo alterar, copiar e criar grandes estruturas em segundos.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/worldedit-mod-7.2.15.jar" class="btn-download" target="_blank" download>Download</a>
           </div>
 
@@ -593,6 +681,11 @@
               <span class="mod-name">TACz (1.20.1 - 1.1.8 Hotfix)</span>
               <span class="mod-meta">Armas realistas, animações de recarga e modificações.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> O principal mod de armas com animações fluidas em primeira e terceira pessoa.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/tacz-1.20.1-1.1.8-hotfix.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -605,6 +698,11 @@
               <span class="mod-name">LR Tactical (1.20.1 - 0.4.1)</span>
               <span class="mod-meta">Adições e miras táticas complementares para o TACz.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Expansão para o TACz trazendo miras holográficas, silenciadores e empunhaduras extras.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/lrtactical-1.20.1-0.4.1.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -616,6 +714,11 @@
               <span class="mod-name">CS Grenades (1.20.1 - 1.5.2)</span>
               <span class="mod-meta">Granadas táticas de luz, fumaça e explosivas para o TACz.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Adiciona granadas inspiradas em jogos de tiro como Flashbang, Smoke e HE.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/csgrenade-1.20.1-1.5.2.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -627,6 +730,11 @@
               <span class="mod-name">CS2 Knives Pack</span>
               <span class="mod-meta">Pacote de facas inspecionáveis estilo Counter-Strike 2.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Diversas facas com animações de inspeção exclusivas para combate corpo a corpo.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/Knifes%20pack%20from%20cs2.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -639,6 +747,11 @@
               <span class="mod-name">QIS4 C4 Bomb (1.6.0)</span>
               <span class="mod-meta">Explosivo C4 armável e plantável integrado ao TACz.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Permite plantar bombas C4 com detonação remota via controle e código numérico.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/qis4c4-1.6.0.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -651,6 +764,11 @@
               <span class="mod-name">SecurityCraft (1.20.1 - v1.10.2.1)</span>
               <span class="mod-meta">Sistemas de proteção, lasers, cofres e portas reforçadas.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Mantenha seu arsenal protegido contra invasões e outros jogadores.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/%5B1.20.1%5D%20SecurityCraft%20v1.10.2.1.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -684,6 +802,11 @@
               <span class="mod-name">Valkyrien Skies (1.20 - 2.4.11)</span>
               <span class="mod-meta">Motor de física para criação de navios e estruturas móveis.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Transforma blocos construídos em estruturas rígidas com física real, empuxo e gravidade.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/valkyrienskies-120-2.4.11.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -696,6 +819,11 @@
               <span class="mod-name">Kotlin For Forge (4.12.0)</span>
               <span class="mod-meta">Biblioteca essencial de suporte para código Kotlin.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Dependência técnica necessária para que o Valkyrien Skies e mods associados funcionem.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/kotlinforforge-4.12.0-all.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -708,6 +836,11 @@
               <span class="mod-name">Create (1.20.1 - 6.0.8)</span>
               <span class="mod-meta">Engrenagens e automação estética mecânica.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Crie veículos e máquinas interativas unindo o Create com a física do Valkyrien Skies.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/create-1.20.1-6.0.8.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -720,6 +853,11 @@
               <span class="mod-name">Supplementaries (1.20 - 3.1.43)</span>
               <span class="mod-meta">Blocos decorativos, sinalizadores e melhorias do jogo.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Adiciona elementos interativos como bandeiras, lanternas, cordas e frascos funcionais.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/supplementaries-1.20-3.1.43-forge.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -732,6 +870,11 @@
               <span class="mod-name">Clockwork (0.5.6)</span>
               <span class="mod-meta">Integração física entre o Create e o Valkyrien Skies.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Permite criar hélices, asas, flaps e motores mecânicos acionados por engrenagens.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/clockwork-0.5.6.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -744,6 +887,11 @@
               <span class="mod-name">Moonlight Library (1.20 - 2.16.34)</span>
               <span class="mod-meta">Biblioteca base necessária para o Supplementaries.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Biblioteca interna obrigatória para suporte de funções e blocos do Supplementaries.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/moonlight-1.20-2.16.34-forge.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -756,6 +904,11 @@
               <span class="mod-name">VS Sup Fix (1.20.1 - 2.0.1)</span>
               <span class="mod-meta">Correção de compatibilidade técnica e bugs.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Patch de correção para evitar conflitos visuais e crashes entre Valkyrien Skies e Supplementaries.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/vs_sup_fix-1.20.1-forge-2.0.1.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -767,6 +920,11 @@
               <span class="mod-name">Nirvana Forge (1.2.5)</span>
               <span class="mod-meta">Otimização de performance e aumento de FPS.</span>
             </div>
+
+            <div class="mod-details-expanded">
+              <strong>Detalhes:</strong> Melhora a alocação de memória RAM e estabiliza as taxas de quadros em modpacks pesados.
+            </div>
+
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
@@ -783,9 +941,24 @@
   </footer>
 
   <script>
+    // AVISO E DOWNLOAD DO METEOR CLIENT
+    function baixarMeteorClient() {
+      const avisoMeteor = "⚠️ ATENÇÃO: O Meteor Client é um mod de HACKS/UTILITY.\n\nSe utilizado em servidores multiplayer que proíbem esse tipo de modificação, você poderá ser BANIDO PERMANENTEMENTE.\n\nO pedrojar e a equipe do Meteor Client NÃO possuem qualquer responsabilidade por banimentos ou punições sofridas.\n\nDeseja continuar e realizar o download mesmo assim?";
+      
+      if (confirm(avisoMeteor)) {
+        const link = document.createElement('a');
+        link.href = "https://file.garden/anu7edfYJXGizhvC/meteor-client-26.1.2-41.jar";
+        link.target = "_blank";
+        link.download = "";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+
     // POP-UP DE CONFIRMAÇÃO DO TLAUNCHER
     function baixarTLauncher() {
-      const mensagem = "O TLauncher, não é considerado seguro pela comunidade, pedrojar.vercel.app não tem responsabilidades por nenhum possivel dano ao seu computador ou ao seus dados, deseja continuar?";
+      const mensagem = "O TLauncher não é considerado seguro pela comunidade. O pedrojar não tem responsabilidade por nenhum possível dano ao seu computador ou aos seus dados. Deseja continuar?";
       if (confirm(mensagem)) {
         window.open('https://tlauncher.org/', '_blank');
       }
@@ -795,7 +968,6 @@
     function baixarOculusComEmbeddium() {
       const mensagem = "Para utilizar o Oculus, o mod Embeddium é OBRIGATÓRIO. O download dos dois mods será iniciado. Deseja continuar?";
       if (confirm(mensagem)) {
-        // Baixa o Oculus
         const linkOculus = document.createElement('a');
         linkOculus.href = "https://file.garden/anu7edfYJXGizhvC/mods/oculus-mc1.20.1-1.8.0.jar";
         linkOculus.target = "_blank";
@@ -804,7 +976,6 @@
         linkOculus.click();
         document.body.removeChild(linkOculus);
 
-        // Baixa o Embeddium após meio segundo
         setTimeout(() => {
           const linkEmbeddium = document.createElement('a');
           linkEmbeddium.href = "https://file.garden/anu7edfYJXGizhvC/mods/embeddium-0.3.31%2Bmc1.20.1.jar";
@@ -851,7 +1022,7 @@
 
     // BAIXAR TODOS OS MODS DO PACK
     function baixarTudoDoPack(botao) {
-      const mensagemAviso = "se seu computador for fraco, não baixe tudo de uma vez, isso pode acabar fechando seu navegador, deseja continuar mesmo assim?";
+      const mensagemAviso = "Se seu computador for fraco, não baixe tudo de uma vez, isso pode acabar fechando seu navegador. Deseja continuar mesmo assim?";
 
       if (confirm(mensagemAviso)) {
         const modpackContainer = botao.closest('.modpack-container');
