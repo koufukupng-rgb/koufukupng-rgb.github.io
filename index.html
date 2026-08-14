@@ -19,14 +19,25 @@
       --bg-dark: #0f1319;
       --bg-card: #181f2a;
       --bg-card-hover: #1e2736;
+      --bg-expanded: rgba(0, 0, 0, 0.25);
       --accent-blue: #0070f3;
       --accent-blue-hover: #005bb5;
-      --accent-glow: rgba(0, 112, 243, 0.3);
       --text-main: #f0f4f8;
       --text-muted: #94a3b8;
       --border-color: rgba(255, 255, 255, 0.08);
       --font-main: 'Inter', system-ui, -apple-system, sans-serif;
       --font-code: 'Fira Code', monospace;
+    }
+
+    /* MODO CLARO */
+    body.light-mode {
+      --bg-dark: #ffffff;
+      --bg-card: #f8fafc;
+      --bg-card-hover: #f1f5f9;
+      --bg-expanded: #e2e8f0;
+      --text-main: #000000;
+      --text-muted: #475569;
+      --border-color: rgba(0, 0, 0, 0.12);
     }
 
     * {
@@ -43,10 +54,11 @@
       display: flex;
       flex-direction: column;
       line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     header {
-      background-color: rgba(24, 31, 42, 0.8);
+      background-color: var(--bg-card);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
@@ -84,6 +96,12 @@
       margin-left: 2px;
     }
 
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .nav-status {
       font-size: 0.85rem;
       color: var(--text-muted);
@@ -98,6 +116,23 @@
       background-color: #10b981;
       border-radius: 50%;
       box-shadow: 0 0 8px #10b981;
+    }
+
+    .btn-toggle {
+      background-color: rgba(0, 112, 243, 0.1);
+      border: 1px solid var(--accent-blue);
+      color: var(--accent-blue);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-toggle:hover {
+      background-color: var(--accent-blue);
+      color: #fff;
     }
 
     main {
@@ -119,9 +154,7 @@
       font-size: 2.5rem;
       font-weight: 800;
       margin-bottom: 0.8rem;
-      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-main);
     }
 
     .hero p {
@@ -138,13 +171,13 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
     .search-input {
       width: 100%;
       padding: 12px 18px;
-      background-color: rgba(0, 0, 0, 0.25);
+      background-color: var(--bg-dark);
       border: 1px solid var(--border-color);
       border-radius: 10px;
       color: var(--text-main);
@@ -172,7 +205,7 @@
     }
 
     .tag-btn {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(0, 0, 0, 0.05);
       border: 1px solid var(--border-color);
       color: var(--text-muted);
       padding: 5px 12px;
@@ -202,12 +235,12 @@
       border: 1px solid var(--border-color);
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       margin-bottom: 2rem;
     }
 
     .modpack-header {
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.05);
       padding: 1.5rem 2rem;
       border-bottom: 1px solid var(--border-color);
       display: flex;
@@ -233,6 +266,7 @@
       justify-content: center;
       font-weight: bold;
       font-size: 1.2rem;
+      color: #fff;
     }
 
     .modpack-title {
@@ -257,10 +291,10 @@
       text-transform: uppercase;
     }
 
-    .badge-original { background-color: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; }
-    .badge-pirata { background-color: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; }
-    .badge-tag { background-color: rgba(0, 112, 243, 0.15); border: 1px solid rgba(0, 112, 243, 0.3); color: #60a5fa; }
-    .badge-danger { background-color: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; }
+    .badge-original { background-color: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981; }
+    .badge-pirata { background-color: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #f59e0b; }
+    .badge-tag { background-color: rgba(0, 112, 243, 0.15); border: 1px solid rgba(0, 112, 243, 0.3); color: var(--accent-blue); }
+    .badge-danger { background-color: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #ef4444; }
 
     .btn-download-all {
       display: inline-flex;
@@ -287,7 +321,7 @@
 
     /* CARD EXPANSÍVEL NO HOVER */
     .download-card {
-      background-color: rgba(255, 255, 255, 0.02);
+      background-color: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 1.2rem;
@@ -308,10 +342,9 @@
       background-color: var(--bg-card-hover);
       border-color: rgba(0, 112, 243, 0.5);
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
-    /* ÁREA EXPANSÍVEL COM ANIMAÇÃO */
     .mod-details-expanded {
       max-height: 0;
       opacity: 0;
@@ -319,7 +352,7 @@
       transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
       font-size: 0.82rem;
       color: var(--text-muted);
-      background-color: rgba(0, 0, 0, 0.25);
+      background-color: var(--bg-expanded);
       border-radius: 8px;
       padding: 0 10px;
       border: 1px solid transparent;
@@ -330,7 +363,7 @@
       opacity: 1;
       margin-top: 6px;
       padding: 10px;
-      border-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-color);
     }
 
     .mod-info {
@@ -385,7 +418,7 @@
       text-align: center;
       color: var(--text-muted);
       font-size: 0.85rem;
-      background-color: rgba(15, 19, 25, 0.5);
+      background-color: var(--bg-card);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -420,36 +453,40 @@
       <a href="#" class="logo">
         <span>pedro</span><span class="logo-ext">.jar</span>
       </a>
-      <div class="nav-status">
-        <div class="status-dot"></div> Repositório Ativo
+      
+      <div class="nav-controls">
+        <button class="btn-toggle" onclick="alternarTema()" id="themeBtn">🌙 Dark</button>
+        <button class="btn-toggle" onclick="alternarIdioma()" id="langBtn">🌐 EN</button>
+        <div class="nav-status">
+          <div class="status-dot"></div> <span data-i18n="repoStatus">Repositório Ativo</span>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <h1>Modpacks & Mods para Minecraft</h1>
-      <p>Baixe modpacks otimizados e arquivos .jar diretamente do repositório oficial.</p>
+      <h1 data-i18n="heroTitle">Modpacks & Mods para Minecraft</h1>
+      <p data-i18n="heroSubtitle">Baixe modpacks otimizados e arquivos .jar diretamente do repositório oficial.</p>
     </section>
 
     <!-- BARRA DE PESQUISA E FILTROS DE TAGS -->
     <section class="search-section">
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Pesquisar mods, modpacks ou categorias..." oninput="filtrarMods()">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Pesquisar mods, modpacks ou categorias..." data-i18n-ph="searchPlaceholder" oninput="filtrarMods()">
       
       <div class="filter-tags">
-        <span class="filter-title">Filtrar por Tag:</span>
-        <button class="tag-btn active" onclick="filtrarPorTag('todas', this)">Todas</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Armas', this)">Armas</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Automação', this)">Automação</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Construção', this)">Construção</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Desempenho', this)">Desempenho</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Física', this)">Física</button>
-
-        <button class="tag-btn" onclick="filtrarPorTag('Hacks', this)">Hacks</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Segurança', this)">Segurança</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Shaders', this)">Shaders</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Técnico', this)">Técnico</button>
-        <button class="tag-btn" onclick="filtrarPorTag('Utilitário', this)">Utilitário</button>
+        <span class="filter-title" data-i18n="filterTitle">Filtrar por Tag:</span>
+        <button class="tag-btn active" onclick="filtrarPorTag('todas', this)" data-i18n="tagAll">Todas</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Armas', this)" data-i18n="tagGuns">Armas</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Automação', this)" data-i18n="tagAutomation">Automação</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Construção', this)" data-i18n="tagBuilding">Construção</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Desempenho', this)" data-i18n="tagPerformance">Desempenho</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Física', this)" data-i18n="tagPhysics">Física</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Hacks', this)" data-i18n="tagHacks">Hacks</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Segurança', this)" data-i18n="tagSecurity">Segurança</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Shaders', this)" data-i18n="tagShaders">Shaders</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Técnico', this)" data-i18n="tagTechnical">Técnico</button>
+        <button class="tag-btn" onclick="filtrarPorTag('Utilitário', this)" data-i18n="tagUtility">Utilitário</button>
       </div>
     </section>
 
@@ -461,7 +498,7 @@
             <div class="modpack-icon" style="background: linear-gradient(135deg, #a855f7, #6b21a8);">💎</div>
             <div>
               <h2 class="modpack-title">Prism Launcher</h2>
-              <span style="font-size: 0.85rem; color: var(--text-muted);">Software Livre • Gerenciador de Instâncias</span>
+              <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="prismSub">Software Livre • Gerenciador de Instâncias</span>
             </div>
           </div>
         </div>
@@ -471,14 +508,14 @@
           <div class="download-card" data-tags="Original Launcher Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-original">Original</span>
-                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-original" data-i18n="badgeOriginal">Original</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
               </div>
               <span class="mod-name">Prism Launcher (Oficial)</span>
-              <span class="mod-meta">Gerenciador de instâncias leve e rápido.</span>
+              <span class="mod-meta" data-i18n="prismMeta">Gerenciador de instâncias leve e rápido.</span>
             </div>
             
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="prismDesc">
               <strong>Detalhes:</strong> Launcher open-source de alta eficiência com gerenciamento de contas, mods e backups automatizados.
             </div>
 
@@ -489,14 +526,14 @@
           <div class="download-card" data-tags="Pirata Launcher Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-pirata">Pirata / Unofficial</span>
-                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-pirata" data-i18n="badgePirate">Pirata / Unofficial</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
               </div>
               <span class="mod-name">TLauncher</span>
-              <span class="mod-meta">Opção para quem joga sem conta Microsoft.</span>
+              <span class="mod-meta" data-i18n="tlMeta">Opção para quem joga sem conta Microsoft.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="tlDesc">
               <strong>Detalhes:</strong> Launcher gratuito popular, porém não oficial. Requer atenção quanto ao uso em computadores pessoais.
             </div>
 
@@ -519,10 +556,10 @@
                 <span class="badge badge-tag">Fabric</span>
               </div>
               <span class="mod-name">Iris Shaders (1.20.1)</span>
-              <span class="mod-meta">Suporte completo a shaders de alta performance para Fabric.</span>
+              <span class="mod-meta" data-i18n="irisMeta">Suporte completo a shaders de alta performance para Fabric.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="irisDesc">
               <strong>Detalhes:</strong> Otimização de renderização gráfica baseada em Sodium, permitindo rodar pacotes de shaders sem travamentos.
             </div>
 
@@ -536,10 +573,10 @@
                 <span class="badge badge-tag">Forge</span>
               </div>
               <span class="mod-name">Oculus (1.20.1 - 1.8.0)</span>
-              <span class="mod-meta">Carregador de shaders para Forge (Requer Embeddium).</span>
+              <span class="mod-meta" data-i18n="oculusMeta">Carregador de shaders para Forge (Requer Embeddium).</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="oculusDesc">
               <strong>Detalhes:</strong> Port do Iris Shaders adaptado para rodar no motor Forge. Necessita do mod Embeddium instalado.
             </div>
 
@@ -549,14 +586,14 @@
           <div class="download-card" data-tags="Desempenho Utilitário Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Desempenho</span>
+                <span class="badge badge-tag" data-i18n="tagPerformance">Desempenho</span>
                 <span class="badge badge-tag">Forge</span>
               </div>
               <span class="mod-name">Embeddium (1.20.1 - 0.3.31)</span>
-              <span class="mod-meta">Otimizador gráfico e dependência obrigatória do Oculus.</span>
+              <span class="mod-meta" data-i18n="embedMeta">Otimizador gráfico e dependência obrigatória do Oculus.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="embedDesc">
               <strong>Detalhes:</strong> Reescrita e otimização de motor de renderização gráfica baseada no Sodium para Forge.
             </div>
 
@@ -569,7 +606,7 @@
 
     <!-- MODS FAVORITOS -->
     <section>
-      <h2 class="section-title">⭐ Mods Favoritos</h2>
+      <h2 class="section-title" data-i18n="secFav">⭐ Mods Favoritos</h2>
       <div class="modpack-container">
         <div class="download-list">
           
@@ -581,10 +618,10 @@
                 <span class="badge badge-tag">Fabric</span>
               </div>
               <span class="mod-name">💀 Meteor Client (26.1.2)</span>
-              <span class="mod-meta">Utility HUD client configurável para Minecraft Fabric.</span>
+              <span class="mod-meta" data-i18n="meteorMeta">Utility HUD client configurável para Minecraft Fabric.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="meteorDesc">
               <strong>Descrição & Agradecimentos:</strong><br>
               Um dos mais avançados utilitários para Fabric. Um agradecimento especial a toda a equipe de desenvolvedores do <strong>Meteor Development</strong> pelo incrível trabalho no projeto open-source!
             </div>
@@ -595,15 +632,15 @@
           <div class="download-card" data-tags="Automação Técnico Construção">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Automação</span>
-                <span class="badge badge-tag">Técnico</span>
-                <span class="badge badge-tag">Construção</span>
+                <span class="badge badge-tag" data-i18n="tagAutomation">Automação</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagBuilding">Construção</span>
               </div>
               <span class="mod-name">Create (1.20.1-6.0.8)</span>
-              <span class="mod-meta">Engrenagens, máquinas estéticas e sistemas automatizados.</span>
+              <span class="mod-meta" data-i18n="createMeta">Engrenagens, máquinas estéticas e sistemas automatizados.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="createDesc">
               <strong>Detalhes:</strong> Adiciona ferramentas tecnológicas baseadas em força rotacional, esteiras rolantes e automação mecânica.
             </div>
 
@@ -613,15 +650,15 @@
           <div class="download-card" data-tags="Segurança Utilitário Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Segurança</span>
-                <span class="badge badge-tag">Utilitário</span>
-                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagSecurity">Segurança</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
               </div>
               <span class="mod-name">SecurityCraft (1.20.1 - v1.10.2.1)</span>
-              <span class="mod-meta">Sistemas de proteção, cofres, lasers e scanners de retina.</span>
+              <span class="mod-meta" data-i18n="secMeta">Sistemas de proteção, cofres, lasers e scanners de retina.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="secDesc">
               <strong>Detalhes:</strong> Perfeito para proteger suas bases com portas com senha, torretas automáticas e alarmes.
             </div>
 
@@ -631,15 +668,15 @@
           <div class="download-card" data-tags="Construção Utilitário Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Construção</span>
-                <span class="badge badge-tag">Utilitário</span>
-                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagBuilding">Construção</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
               </div>
               <span class="mod-name">WorldEdit (7.2.15)</span>
-              <span class="mod-meta">Editor de mapa em tempo real via comandos e machados.</span>
+              <span class="mod-meta" data-i18n="weMeta">Editor de mapa em tempo real via comandos e machados.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="weDesc">
               <strong>Detalhes:</strong> Ferramenta para construtores, permitindo alterar, copiar e criar grandes estruturas em segundos.
             </div>
 
@@ -652,13 +689,13 @@
 
     <!-- MODPACKS DISPONÍVEIS -->
     <section>
-      <h2 class="section-title">📦 Modpacks Disponíveis</h2>
+      <h2 class="section-title" data-i18n="secPacks">📦 Modpacks Disponíveis</h2>
 
       <!-- MODPACK: PEDRO'S GUNS -->
       <div class="modpack-container">
         <div class="modpack-header">
           <div class="modpack-title-group">
-            <div class="modpack-icon" style="background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-hover));">🔫</div>
+            <div class="modpack-icon">🔫</div>
             <div>
               <h2 class="modpack-title">Pedro's Guns</h2>
               <span style="font-size: 0.85rem; color: var(--text-muted);">Minecraft 1.20.1 • Forge / TacZ</span>
@@ -666,7 +703,7 @@
           </div>
 
           <div class="modpack-actions">
-            <button class="btn-download-all" onclick="baixarTudoDoPack(this)">📥 Baixar Todos os Mods</button>
+            <button class="btn-download-all" onclick="baixarTudoDoPack(this)" data-i18n="btnDownloadAll">📥 Baixar Todos os Mods</button>
           </div>
         </div>
 
@@ -675,14 +712,14 @@
           <div class="download-card" data-tags="Armas Técnico Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Armas</span>
-                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagGuns">Armas</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
               </div>
               <span class="mod-name">TACz (1.20.1 - 1.1.8 Hotfix)</span>
-              <span class="mod-meta">Armas realistas, animações de recarga e modificações.</span>
+              <span class="mod-meta" data-i18n="taczMeta">Armas realistas, animações de recarga e modificações.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="taczDesc">
               <strong>Detalhes:</strong> O principal mod de armas com animações fluidas em primeira e terceira pessoa.
             </div>
 
@@ -692,14 +729,14 @@
           <div class="download-card" data-tags="Armas Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Armas</span>
-                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-tag" data-i18n="tagGuns">Armas</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
               </div>
               <span class="mod-name">LR Tactical (1.20.1 - 0.4.1)</span>
-              <span class="mod-meta">Adições e miras táticas complementares para o TACz.</span>
+              <span class="mod-meta" data-i18n="lrMeta">Adições e miras táticas complementares para o TACz.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="lrDesc">
               <strong>Detalhes:</strong> Expansão para o TACz trazendo miras holográficas, silenciadores e empunhaduras extras.
             </div>
 
@@ -709,13 +746,13 @@
           <div class="download-card" data-tags="Armas Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Armas</span>
+                <span class="badge badge-tag" data-i18n="tagGuns">Armas</span>
               </div>
               <span class="mod-name">CS Grenades (1.20.1 - 1.5.2)</span>
-              <span class="mod-meta">Granadas táticas de luz, fumaça e explosivas para o TACz.</span>
+              <span class="mod-meta" data-i18n="csgMeta">Granadas táticas de luz, fumaça e explosivas para o TACz.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="csgDesc">
               <strong>Detalhes:</strong> Adiciona granadas inspiradas em jogos de tiro como Flashbang, Smoke e HE.
             </div>
 
@@ -725,13 +762,13 @@
           <div class="download-card" data-tags="Armas Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Armas</span>
+                <span class="badge badge-tag" data-i18n="tagGuns">Armas</span>
               </div>
               <span class="mod-name">CS2 Knives Pack</span>
-              <span class="mod-meta">Pacote de facas inspecionáveis estilo Counter-Strike 2.</span>
+              <span class="mod-meta" data-i18n="cs2kMeta">Pacote de facas inspecionáveis estilo Counter-Strike 2.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="cs2kDesc">
               <strong>Detalhes:</strong> Diversas facas com animações de inspeção exclusivas para combate corpo a corpo.
             </div>
 
@@ -741,14 +778,14 @@
           <div class="download-card" data-tags="Armas Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Armas</span>
-                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagGuns">Armas</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
               </div>
               <span class="mod-name">QIS4 C4 Bomb (1.6.0)</span>
-              <span class="mod-meta">Explosivo C4 armável e plantável integrado ao TACz.</span>
+              <span class="mod-meta" data-i18n="c4Meta">Explosivo C4 armável e plantável integrado ao TACz.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="c4Desc">
               <strong>Detalhes:</strong> Permite plantar bombas C4 com detonação remota via controle e código numérico.
             </div>
 
@@ -758,14 +795,14 @@
           <div class="download-card" data-tags="Segurança Utilitário Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Segurança</span>
-                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-tag" data-i18n="tagSecurity">Segurança</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
               </div>
               <span class="mod-name">SecurityCraft (1.20.1 - v1.10.2.1)</span>
-              <span class="mod-meta">Sistemas de proteção, lasers, cofres e portas reforçadas.</span>
+              <span class="mod-meta" data-i18n="secMeta2">Sistemas de proteção, lasers, cofres e portas reforçadas.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="secDesc2">
               <strong>Detalhes:</strong> Mantenha seu arsenal protegido contra invasões e outros jogadores.
             </div>
 
@@ -787,7 +824,7 @@
           </div>
 
           <div class="modpack-actions">
-            <button class="btn-download-all" onclick="baixarTudoDoPack(this)">📥 Baixar Todos os Mods</button>
+            <button class="btn-download-all" onclick="baixarTudoDoPack(this)" data-i18n="btnDownloadAll">📥 Baixar Todos os Mods</button>
           </div>
         </div>
 
@@ -796,14 +833,14 @@
           <div class="download-card" data-tags="Física Técnico Automação">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Física</span>
-                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagPhysics">Física</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
               </div>
               <span class="mod-name">Valkyrien Skies (1.20 - 2.4.11)</span>
-              <span class="mod-meta">Motor de física para criação de navios e estruturas móveis.</span>
+              <span class="mod-meta" data-i18n="vsMeta">Motor de física para criação de navios e estruturas móveis.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="vsDesc">
               <strong>Detalhes:</strong> Transforma blocos construídos em estruturas rígidas com física real, empuxo e gravidade.
             </div>
 
@@ -813,14 +850,14 @@
           <div class="download-card" data-tags="Utilitário Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Utilitário</span>
-                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
               </div>
               <span class="mod-name">Kotlin For Forge (4.12.0)</span>
-              <span class="mod-meta">Biblioteca essencial de suporte para código Kotlin.</span>
+              <span class="mod-meta" data-i18n="kotlinMeta">Biblioteca essencial de suporte para código Kotlin.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="kotlinDesc">
               <strong>Detalhes:</strong> Dependência técnica necessária para que o Valkyrien Skies e mods associados funcionem.
             </div>
 
@@ -830,14 +867,14 @@
           <div class="download-card" data-tags="Automação Construção Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Automação</span>
-                <span class="badge badge-tag">Construção</span>
+                <span class="badge badge-tag" data-i18n="tagAutomation">Automação</span>
+                <span class="badge badge-tag" data-i18n="tagBuilding">Construção</span>
               </div>
               <span class="mod-name">Create (1.20.1 - 6.0.8)</span>
-              <span class="mod-meta">Engrenagens e automação estética mecânica.</span>
+              <span class="mod-meta" data-i18n="createMeta2">Engrenagens e automação estética mecânica.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="createDesc2">
               <strong>Detalhes:</strong> Crie veículos e máquinas interativas unindo o Create com a física do Valkyrien Skies.
             </div>
 
@@ -847,14 +884,14 @@
           <div class="download-card" data-tags="Construção Utilitário">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Construção</span>
-                <span class="badge badge-tag">Utilitário</span>
+                <span class="badge badge-tag" data-i18n="tagBuilding">Construção</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
               </div>
               <span class="mod-name">Supplementaries (1.20 - 3.1.43)</span>
-              <span class="mod-meta">Blocos decorativos, sinalizadores e melhorias do jogo.</span>
+              <span class="mod-meta" data-i18n="suppMeta">Blocos decorativos, sinalizadores e melhorias do jogo.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="suppDesc">
               <strong>Detalhes:</strong> Adiciona elementos interativos como bandeiras, lanternas, cordas e frascos funcionais.
             </div>
 
@@ -864,14 +901,14 @@
           <div class="download-card" data-tags="Física Automação Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Física</span>
-                <span class="badge badge-tag">Automação</span>
+                <span class="badge badge-tag" data-i18n="tagPhysics">Física</span>
+                <span class="badge badge-tag" data-i18n="tagAutomation">Automação</span>
               </div>
               <span class="mod-name">Clockwork (0.5.6)</span>
-              <span class="mod-meta">Integração física entre o Create e o Valkyrien Skies.</span>
+              <span class="mod-meta" data-i18n="clockMeta">Integração física entre o Create e o Valkyrien Skies.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="clockDesc">
               <strong>Detalhes:</strong> Permite criar hélices, asas, flaps e motores mecânicos acionados por engrenagens.
             </div>
 
@@ -881,14 +918,14 @@
           <div class="download-card" data-tags="Utilitário Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Utilitário</span>
-                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagUtility">Utilitário</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
               </div>
               <span class="mod-name">Moonlight Library (1.20 - 2.16.34)</span>
-              <span class="mod-meta">Biblioteca base necessária para o Supplementaries.</span>
+              <span class="mod-meta" data-i18n="moonMeta">Biblioteca base necessária para o Supplementaries.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="moonDesc">
               <strong>Detalhes:</strong> Biblioteca interna obrigatória para suporte de funções e blocos do Supplementaries.
             </div>
 
@@ -898,34 +935,36 @@
           <div class="download-card" data-tags="Desempenho Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Desempenho</span>
-                <span class="badge badge-tag">Técnico</span>
+                <span class="badge badge-tag" data-i18n="tagPerformance">Desempenho</span>
+                <span class="badge badge-tag" data-i18n="tagTechnical">Técnico</span>
               </div>
               <span class="mod-name">VS Sup Fix (1.20.1 - 2.0.1)</span>
-              <span class="mod-meta">Correção de compatibilidade técnica e bugs.</span>
+              <span class="mod-meta" data-i18n="vsfixMeta">Correção de compatibilidade técnica e bugs.</span>
             </div>
 
-            <div class="mod-details-expanded">
+            <div class="mod-details-expanded" data-i18n="vsfixDesc">
               <strong>Detalhes:</strong> Patch de correção para evitar conflitos visuais e crashes entre Valkyrien Skies e Supplementaries.
             </div>
 
             <a href="https://file.garden/anu7edfYJXGizhvC/mods/vs_sup_fix-1.20.1-forge-2.0.1.jar" class="btn-download mod-link" target="_blank" download>Download</a>
           </div>
 
+          <!-- NIRVANA FORGE (MOD COM AVISO +16) -->
           <div class="download-card" data-tags="Desempenho Técnico">
             <div class="mod-info">
               <div class="mod-header-tags">
-                <span class="badge badge-tag">Desempenho</span>
+                <span class="badge badge-danger">+16</span>
+                <span class="badge badge-tag" data-i18n="tagPerformance">Desempenho</span>
               </div>
               <span class="mod-name">Nirvana Forge (1.2.5)</span>
-              <span class="mod-meta">Otimização de performance e aumento de FPS.</span>
+              <span class="mod-meta" data-i18n="nirvanaMeta">Mod temático de maconha / cannabis.</span>
             </div>
 
-            <div class="mod-details-expanded">
-              <strong>Detalhes:</strong> Melhora a alocação de memória RAM e estabiliza as taxas de quadros em modpacks pesados.
+            <div class="mod-details-expanded" data-i18n="nirvanaDesc">
+              <strong>Detalhes:</strong> Mod temático que envolve plantas e itens de maconha. Não recomendado para menores de 16 anos.
             </div>
 
-            <a href="https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar" class="btn-download mod-link" target="_blank" download>Download</a>
+            <button onclick="baixarNirvana()" class="btn-download">Download</button>
           </div>
 
         </div>
@@ -934,18 +973,215 @@
   </main>
 
   <footer>
-    <a href="https://livepix.gg/papaisupernoob" target="_blank" class="btn-donation">
+    <a href="https://livepix.gg/papaisupernoob" target="_blank" class="btn-donation" data-i18n="btnDonate">
       🧀 Me doe um pão de queijo
     </a>
-    <p>&copy; 2026 pedro.jar. Todos os direitos reservados. Não afiliado à Mojang Studios.</p>
+    <p>&copy; 2026 pedro.jar. <span data-i18n="footerRights">Todos os direitos reservados. Não afiliado à Mojang Studios.</span></p>
   </footer>
 
   <script>
+    // SISTEMA DE TRADUÇÃO (PT / EN)
+    let idiomaAtual = 'pt';
+
+    const traducoes = {
+      pt: {
+        repoStatus: "Repositório Ativo",
+        heroTitle: "Modpacks & Mods para Minecraft",
+        heroSubtitle: "Baixe modpacks otimizados e arquivos .jar diretamente do repositório oficial.",
+        searchPlaceholder: "🔍 Pesquisar mods, modpacks ou categorias...",
+        filterTitle: "Filtrar por Tag:",
+        tagAll: "Todas",
+        tagGuns: "Armas",
+        tagAutomation: "Automação",
+        tagBuilding: "Construção",
+        tagPerformance: "Desempenho",
+        tagPhysics: "Física",
+        tagHacks: "Hacks",
+        tagSecurity: "Segurança",
+        tagShaders: "Shaders",
+        tagTechnical: "Técnico",
+        tagUtility: "Utilitário",
+        prismSub: "Software Livre • Gerenciador de Instâncias",
+        badgeOriginal: "Original",
+        badgePirate: "Pirata / Unofficial",
+        prismMeta: "Gerenciador de instâncias leve e rápido.",
+        prismDesc: "<strong>Detalhes:</strong> Launcher open-source de alta eficiência com gerenciamento de contas, mods e backups automatizados.",
+        tlMeta: "Opção para quem joga sem conta Microsoft.",
+        tlDesc: "<strong>Detalhes:</strong> Launcher gratuito popular, porém não oficial. Requer atenção quanto ao uso em computadores pessoais.",
+        irisMeta: "Suporte completo a shaders de alta performance para Fabric.",
+        irisDesc: "<strong>Detalhes:</strong> Otimização de renderização gráfica baseada em Sodium, permitindo rodar pacotes de shaders sem travamentos.",
+        oculusMeta: "Carregador de shaders para Forge (Requer Embeddium).",
+        oculusDesc: "<strong>Detalhes:</strong> Port do Iris Shaders adaptado para rodar no motor Forge. Necessita do mod Embeddium instalado.",
+        embedMeta: "Otimizador gráfico e dependência obrigatória do Oculus.",
+        embedDesc: "<strong>Detalhes:</strong> Reescrita e otimização de motor de renderização gráfica baseada no Sodium para Forge.",
+        secFav: "⭐ Mods Favoritos",
+        meteorMeta: "Utility HUD client configurável para Minecraft Fabric.",
+        meteorDesc: "<strong>Descrição & Agradecimentos:</strong><br>Um dos mais avançados utilitários para Fabric. Um agradecimento especial a toda a equipe de desenvolvedores do <strong>Meteor Development</strong> pelo incrível trabalho no projeto open-source!",
+        createMeta: "Engrenagens, máquinas estéticas e sistemas automatizados.",
+        createDesc: "<strong>Detalhes:</strong> Adiciona ferramentas tecnológicas baseadas em força rotacional, esteiras rolantes e automação mecânica.",
+        secMeta: "Sistemas de proteção, cofres, lasers e scanners de retina.",
+        secDesc: "<strong>Detalhes:</strong> Perfeito para proteger suas bases com portas com senha, torretas automáticas e alarmes.",
+        weMeta: "Editor de mapa em tempo real via comandos e machados.",
+        weDesc: "<strong>Detalhes:</strong> Ferramenta para construtores, permitindo alterar, copiar e criar grandes estruturas em segundos.",
+        secPacks: "📦 Modpacks Disponíveis",
+        btnDownloadAll: "📥 Baixar Todos os Mods",
+        taczMeta: "Armas realistas, animações de recarga e modificações.",
+        taczDesc: "<strong>Detalhes:</strong> O principal mod de armas com animações fluidas em primeira e terceira pessoa.",
+        lrMeta: "Adições e miras táticas complementares para o TACz.",
+        lrDesc: "<strong>Detalhes:</strong> Expansão para o TACz trazendo miras holográficas, silenciadores e empunhaduras extras.",
+        csgMeta: "Granadas táticas de luz, fumaça e explosivas para o TACz.",
+        csgDesc: "<strong>Detalhes:</strong> Adiciona granadas inspiradas em jogos de tiro como Flashbang, Smoke e HE.",
+        cs2kMeta: "Pacote de facas inspecionáveis estilo Counter-Strike 2.",
+        cs2kDesc: "<strong>Detalhes:</strong> Diversas facas com animações de inspeção exclusivas para combate corpo a corpo.",
+        c4Meta: "Explosivo C4 armável e plantável integrado ao TACz.",
+        c4Desc: "<strong>Detalhes:</strong> Permite plantar bombas C4 com detonação remota via controle e código numérico.",
+        secMeta2: "Sistemas de proteção, lasers, cofres e portas reforçadas.",
+        secDesc2: "<strong>Detalhes:</strong> Mantenha seu arsenal protegido contra invasões e outros jogadores.",
+        vsMeta: "Motor de física para criação de navios e estruturas móveis.",
+        vsDesc: "<strong>Detalhes:</strong> Transforma blocos construídos em estruturas rígidas com física real, empuxo e gravidade.",
+        kotlinMeta: "Biblioteca essencial de suporte para código Kotlin.",
+        kotlinDesc: "<strong>Detalhes:</strong> Dependência técnica necessária para que o Valkyrien Skies e mods associados funcionem.",
+        createMeta2: "Engrenagens e automação estética mecânica.",
+        createDesc2: "<strong>Detalhes:</strong> Crie veículos e máquinas interativas unindo o Create com a física do Valkyrien Skies.",
+        suppMeta: "Blocos decorativos, sinalizadores e melhorias do jogo.",
+        suppDesc: "<strong>Detalhes:</strong> Adiciona elementos interativos como bandeiras, lanternas, cordas e frascos funcionais.",
+        clockMeta: "Integração física entre o Create e o Valkyrien Skies.",
+        clockDesc: "<strong>Detalhes:</strong> Permite criar hélices, asas, flaps e motores mecânicos acionados por engrenagens.",
+        moonMeta: "Biblioteca base necessária para o Supplementaries.",
+        moonDesc: "<strong>Detalhes:</strong> Biblioteca interna obrigatória para suporte de funções e blocos do Supplementaries.",
+        vsfixMeta: "Correção de compatibilidade técnica e bugs.",
+        vsfixDesc: "<strong>Detalhes:</strong> Patch de correção para evitar conflitos visuais e crashes entre Valkyrien Skies e Supplementaries.",
+        nirvanaMeta: "Mod temático de maconha / cannabis.",
+        nirvanaDesc: "<strong>Detalhes:</strong> Mod temático que envolve plantas e itens de maconha. Não recomendado para menores de 16 anos.",
+        btnDonate: "🧀 Me doe um pão de queijo",
+        footerRights: "Todos os direitos reservados. Não afiliado à Mojang Studios."
+      },
+      en: {
+        repoStatus: "Repository Active",
+        heroTitle: "Minecraft Modpacks & Mods",
+        heroSubtitle: "Download optimized modpacks and .jar files directly from the official repository.",
+        searchPlaceholder: "🔍 Search mods, modpacks, or categories...",
+        filterTitle: "Filter by Tag:",
+        tagAll: "All",
+        tagGuns: "Guns",
+        tagAutomation: "Automation",
+        tagBuilding: "Building",
+        tagPerformance: "Performance",
+        tagPhysics: "Physics",
+        tagHacks: "Hacks",
+        tagSecurity: "Security",
+        tagShaders: "Shaders",
+        tagTechnical: "Technical",
+        tagUtility: "Utility",
+        prismSub: "Free Software • Instance Manager",
+        badgeOriginal: "Original",
+        badgePirate: "Pirate / Unofficial",
+        prismMeta: "Fast and lightweight instance manager.",
+        prismDesc: "<strong>Details:</strong> High-efficiency open-source launcher with account management, mods, and automated backups.",
+        tlMeta: "Option for users playing without a Microsoft account.",
+        tlDesc: "<strong>Details:</strong> Popular free launcher, but unofficial. Exercise caution when using on personal computers.",
+        irisMeta: "Full high-performance shader support for Fabric.",
+        irisDesc: "<strong>Details:</strong> Sodium-based graphics rendering optimization, enabling smooth shader pack execution.",
+        oculusMeta: "Shader loader for Forge (Requires Embeddium).",
+        oculusDesc: "<strong>Details:</strong> Iris Shaders port adapted to run on the Forge engine. Requires Embeddium mod installed.",
+        embedMeta: "Graphics optimizer and mandatory dependency for Oculus.",
+        embedDesc: "<strong>Details:</strong> Sodium-based graphics rendering engine rewrite and optimization for Forge.",
+        secFav: "⭐ Favorite Mods",
+        meteorMeta: "Configurable utility HUD client for Minecraft Fabric.",
+        meteorDesc: "<strong>Description & Credits:</strong><br>One of the most advanced utilities for Fabric. Special thanks to the entire <strong>Meteor Development</strong> team for their incredible open-source work!",
+        createMeta: "Gears, aesthetic machinery, and automated systems.",
+        createDesc: "<strong>Details:</strong> Adds tech tools powered by rotational force, conveyor belts, and mechanical automation.",
+        secMeta: "Protection systems, safes, lasers, and retina scanners.",
+        secDesc: "<strong>Details:</strong> Perfect for protecting your bases with passcode doors, automatic turrets, and alarms.",
+        weMeta: "Real-time map editor via commands and axes.",
+        weDesc: "<strong>Details:</strong> Tool for builders, allowing you to edit, copy, and create huge structures in seconds.",
+        secPacks: "📦 Available Modpacks",
+        btnDownloadAll: "📥 Download All Mods",
+        taczMeta: "Realistic guns, reload animations, and attachments.",
+        taczDesc: "<strong>Details:</strong> The main gun mod featuring smooth first-person and third-person animations.",
+        lrMeta: "Complementary tactical scopes and additions for TACz.",
+        lrDesc: "<strong>Details:</strong> Expansion for TACz adding holographic scopes, suppressors, and extra grips.",
+        csgMeta: "Tactical flash, smoke, and explosive grenades for TACz.",
+        csgDesc: "<strong>Details:</strong> Adds grenades inspired by shooter games like Flashbang, Smoke, and HE.",
+        cs2kMeta: "Inspectable knife pack styled after Counter-Strike 2.",
+        cs2kDesc: "<strong>Details:</strong> Multiple knives with exclusive inspection animations for melee combat.",
+        c4Meta: "Plantable C4 explosive integrated with TACz.",
+        c4Desc: "<strong>Details:</strong> Allows planting C4 explosives with remote detonation via controller and code.",
+        secMeta2: "Protection systems, lasers, safes, and reinforced doors.",
+        secDesc2: "<strong>Details:</strong> Keep your arsenal safe from break-ins and other players.",
+        vsMeta: "Physics engine for creating ships and moving structures.",
+        vsDesc: "<strong>Details:</strong> Turns built blocks into rigid structures with real physics, buoyancy, and gravity.",
+        kotlinMeta: "Essential support library for Kotlin code.",
+        kotlinDesc: "<strong>Details:</strong> Technical dependency required for Valkyrien Skies and associated mods to function.",
+        createMeta2: "Gears and aesthetic mechanical automation.",
+        createDesc2: "<strong>Details:</strong> Build vehicles and interactive machines pairing Create with Valkyrien Skies physics.",
+        suppMeta: "Decorative blocks, flags, and game enhancements.",
+        suppDesc: "<strong>Details:</strong> Adds interactive elements like flags, lanterns, ropes, and functional jars.",
+        clockMeta: "Physics integration between Create and Valkyrien Skies.",
+        clockDesc: "<strong>Details:</strong> Allows creating propellers, wings, flaps, and mechanical engines driven by gears.",
+        moonMeta: "Base library required for Supplementaries.",
+        moonDesc: "<strong>Details:</strong> Mandatory internal library for functional and block support in Supplementaries.",
+        vsfixMeta: "Technical compatibility fix and bug patches.",
+        vsfixDesc: "<strong>Details:</strong> Patch to prevent visual glitches and crashes between Valkyrien Skies and Supplementaries.",
+        nirvanaMeta: "Cannabis / marijuana themed mod.",
+        nirvanaDesc: "<strong>Details:</strong> Themed mod involving marijuana plants and items. Not recommended for under 16s.",
+        btnDonate: "🧀 Donate a cheese bread",
+        footerRights: "All rights reserved. Not affiliated with Mojang Studios."
+      }
+    };
+
+    function alternarIdioma() {
+      idiomaAtual = idiomaAtual === 'pt' ? 'en' : 'pt';
+      document.getElementById('langBtn').textContent = idiomaAtual === 'pt' ? '🌐 EN' : '🌐 PT';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const chave = el.getAttribute('data-i18n');
+        if (traducoes[idiomaAtual][chave]) {
+          el.innerHTML = traducoes[idiomaAtual][chave];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const chave = el.getAttribute('data-i18n-ph');
+        if (traducoes[idiomaAtual][chave]) {
+          el.placeholder = traducoes[idiomaAtual][chave];
+        }
+      });
+    }
+
+    // ALTERNADOR DARK / LIGHT MODE
+    function alternarTema() {
+      document.body.classList.toggle('light-mode');
+      const isLight = document.body.classList.contains('light-mode');
+      document.getElementById('themeBtn').textContent = isLight ? '☀️ Light' : '🌙 Dark';
+    }
+
+    // DOWNLOAD NIRVANA (+16 AVISO)
+    function baixarNirvana() {
+      const msgPt = "🔞 AVISO DE CONTEÚDO (+16):\n\nEste mod (Nirvana) contém temas e itens relacionados a drogas explícitas (maconha/cannabis).\nNão é recomendado para menores de 16 anos.\n\nDeseja continuar com o download?";
+      const msgEn = "🔞 CONTENT WARNING (+16):\n\nThis mod (Nirvana) contains explicit drug-related themes and items (marijuana/cannabis).\nIt is not recommended for individuals under 16 years old.\n\nDo you wish to proceed with the download?";
+
+      const mensagem = idiomaAtual === 'pt' ? msgPt : msgEn;
+
+      if (confirm(mensagem)) {
+        const link = document.createElement('a');
+        link.href = "https://file.garden/anu7edfYJXGizhvC/mods/nirvana-forge-1.2.5.jar";
+        link.target = "_blank";
+        link.download = "";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+
     // AVISO E DOWNLOAD DO METEOR CLIENT
     function baixarMeteorClient() {
-      const avisoMeteor = "⚠️ ATENÇÃO: O Meteor Client é um mod de HACKS/UTILITY.\n\nSe utilizado em servidores multiplayer que proíbem esse tipo de modificação, você poderá ser BANIDO PERMANENTEMENTE.\n\nO pedrojar e a equipe do Meteor Client NÃO possuem qualquer responsabilidade por banimentos ou punições sofridas.\n\nDeseja continuar e realizar o download mesmo assim?";
-      
-      if (confirm(avisoMeteor)) {
+      const msgPt = "⚠️ ATENÇÃO: O Meteor Client é um mod de HACKS/UTILITY.\n\nSe utilizado em servidores multiplayer que proíbem esse tipo de modificação, você poderá ser BANIDO PERMANENTEMENTE.\n\nO pedrojar e a equipe do Meteor Client NÃO possuem qualquer responsabilidade por banimentos ou punições sofridas.\n\nDeseja continuar e realizar o download mesmo assim?";
+      const msgEn = "⚠️ WARNING: Meteor Client is a HACKS/UTILITY mod.\n\nIf used on multiplayer servers that forbid this type of modification, you may be PERMANENTLY BANNED.\n\npedrojar and the Meteor Client team take NO responsibility for any bans or punishments incurred.\n\nDo you still wish to proceed with the download?";
+
+      const mensagem = idiomaAtual === 'pt' ? msgPt : msgEn;
+
+      if (confirm(mensagem)) {
         const link = document.createElement('a');
         link.href = "https://file.garden/anu7edfYJXGizhvC/meteor-client-26.1.2-41.jar";
         link.target = "_blank";
@@ -958,7 +1194,10 @@
 
     // POP-UP DE CONFIRMAÇÃO DO TLAUNCHER
     function baixarTLauncher() {
-      const mensagem = "O TLauncher não é considerado seguro pela comunidade. O pedrojar não tem responsabilidade por nenhum possível dano ao seu computador ou aos seus dados. Deseja continuar?";
+      const msgPt = "O TLauncher não é considerado seguro pela comunidade. O pedrojar não tem responsabilidade por nenhum possível dano ao seu computador ou aos seus dados. Deseja continuar?";
+      const msgEn = "TLauncher is not considered safe by the community. pedrojar takes no responsibility for any potential damage to your computer or data. Do you wish to continue?";
+
+      const mensagem = idiomaAtual === 'pt' ? msgPt : msgEn;
       if (confirm(mensagem)) {
         window.open('https://tlauncher.org/', '_blank');
       }
@@ -966,7 +1205,10 @@
 
     // AVISO DO OCULUS + EMBEDDIUM
     function baixarOculusComEmbeddium() {
-      const mensagem = "Para utilizar o Oculus, o mod Embeddium é OBRIGATÓRIO. O download dos dois mods será iniciado. Deseja continuar?";
+      const msgPt = "Para utilizar o Oculus, o mod Embeddium é OBRIGATÓRIO. O download dos dois mods será iniciado. Deseja continuar?";
+      const msgEn = "To use Oculus, the Embeddium mod is MANDATORY. Download for both mods will begin. Do you wish to continue?";
+
+      const mensagem = idiomaAtual === 'pt' ? msgPt : msgEn;
       if (confirm(mensagem)) {
         const linkOculus = document.createElement('a');
         linkOculus.href = "https://file.garden/anu7edfYJXGizhvC/mods/oculus-mc1.20.1-1.8.0.jar";
@@ -1022,14 +1264,17 @@
 
     // BAIXAR TODOS OS MODS DO PACK
     function baixarTudoDoPack(botao) {
-      const mensagemAviso = "Se seu computador for fraco, não baixe tudo de uma vez, isso pode acabar fechando seu navegador. Deseja continuar mesmo assim?";
+      const msgPt = "Se seu computador for fraco, não baixe tudo de uma vez, isso pode acabar fechando seu navegador. Deseja continuar mesmo assim?";
+      const msgEn = "If your computer is low-end, downloading all files at once may crash your browser. Do you still wish to continue?";
 
-      if (confirm(mensagemAviso)) {
+      const mensagem = idiomaAtual === 'pt' ? msgPt : msgEn;
+
+      if (confirm(mensagem)) {
         const modpackContainer = botao.closest('.modpack-container');
         const links = modpackContainer.querySelectorAll('.mod-link');
 
         if (links.length === 0) {
-          alert("Nenhum link de download foi encontrado.");
+          alert(idiomaAtual === 'pt' ? "Nenhum link de download foi encontrado." : "No download links found.");
           return;
         }
 
