@@ -1,0 +1,16 @@
+{
+  "name": "pedrojar",
+  "version": "1.0.0",
+  "description": "Modpacks & Mods para Minecraft - pedro.jar repository",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site - no build required'",
+    "dev": "python3 -m http.server 8000 || python -m http.server 8000 || php -S localhost:8000"
+  },
+  "keywords": ["minecraft", "modpacks", "mods"],
+  "author": "pedro.jar",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/analytics": "^1.1.1"
+  }
+}
